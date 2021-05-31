@@ -34,4 +34,9 @@ Special thanks to:
       https://selfregistration.cowin.gov.in/
    -  Add all the non-vaccinated members to get the vaccinations slots for them.
 
- 
+ ## Installation:
+ 1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
+ 2)   Open command prompt:
+   -  win key + r (A popup will open)
+   -  type "cmd" & press enter.
+ 3)   
