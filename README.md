@@ -1,5 +1,7 @@
 # cowin-vaccination-book-slot
-Vaccination slot booking telegram bot.
+Vaccination slot booking telegram bot automation (with captcha resolution & alerting capabilities).
+_Personally, I have used this for myself & my wife to get vaccinated, hope it helps you as well._
+<br>
 ![image](https://user-images.githubusercontent.com/54980800/120207031-88e45a80-c249-11eb-95de-c9f11fa351ca.png)
 
 This automation subscribes to the telegram bot. Once registered mobile number is entered, it gets the cowin-session using otp provided by the user.
@@ -28,6 +30,13 @@ Special thanks to:
 5) Lastly my wife: Srishti (@ournotesfromtheroads) (https://www.instagram.com/ournotesfromtheroads/)
 
 **Must Read - 1st Para**: https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2
+
+## Drawbacks:
+1) As I had an ios phone, It was not possible to automate otps, however, it is possible to automate otp transmission via android.
+   -  This results in entering the otp every 15 mins, to continue the session for searching the slots.
+   -  This requires constant response from the user when notified either via computer beep or telegram notification.
+2) Inputs & outputs on telegram can be beautified, right now, I have just pushed them from console.
+3) Exception handling for inputs & url requests.
 
 ## Pre-requisites:
 
@@ -87,7 +96,7 @@ Special thanks to:
 ## SELECTION & FEATURES:
    -  Inputs:
       -  In Telegram, your messages act as input to the script.
-      -  Mostly, the inputs are one time effort, as once entered, this will be saved in a file for future run.
+      -  Mostly, _**the inputs are one time effort, as once entered, this will be saved in a file**_ for future run.
       -  If timeout happens, i.e. user doesnot respond within 100 sec from the time when bot's message arrives.
          -  Manual input can be given from keyboard but only on computer.
       - Below are the list of Inputs gathered for the first run.
