@@ -37,8 +37,15 @@ Special thanks to:
    -  Add all the non-vaccinated members to get the vaccinations slots for them.
 
  ## Installation:
+ This is a one time activity.
  1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
- 2)   Open command prompt:
-      -  win key + r (A popup will open)
-      -  type "cmd" & press enter.
- 3)   
+ 2)   Download the source code from the following link-
+      -  https://github.com/shashankbafna/cowin-vaccination-book-slot/archive/refs/heads/main.zip
+ 3)   Unzip & Extract the zip downloaded.
+ 4)   Go inside the Extracted folder ->src
+      -  ![image](https://user-images.githubusercontent.com/54980800/120198763-1f138300-c240-11eb-8198-aca2ff40178f.png)
+
+ 5)   In the The Address bar, which is located at the top of File Explorer as shown above, displays the path of the currently selected folder, type "cmd"
+ 6)   This will open the command prompt with the location of script src.
+ 7)   Type the following command to install the dependent packages to run this script.
+      -  `pip install -r requirements.txt`
