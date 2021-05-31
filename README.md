@@ -8,7 +8,7 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 
 Pre-requisites:
 
-1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
+1) **Computer/Laptop/CPU** - capable of running python & having access to internet.<br>
    a) Packages/Softwares needed on computer:
       i) Windows/Linux OS.
       ii) Python 3 or greater installed.
