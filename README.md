@@ -3,7 +3,7 @@
 
 _Personally, I have used this & we (me, Srishti) got vaccinated, hope it helps you as well._
 <br>
-![image](https://user-images.githubusercontent.com/54980800/120207031-88e45a80-c249-11eb-95de-c9f11fa351ca.png)
+![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
 
 This automation subscribes to the telegram bot. Once registered mobile number is entered, it gets the cowin-session using otp provided by the user.
 While maintaining the valid user session, it tries to find a vaccination slot for the selected user & selected calendar.
