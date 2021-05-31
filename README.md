@@ -63,7 +63,7 @@ Special thanks to:
  ## Installation:
  This is a one time activity.
  1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
-      -  Add Python 3.7 to Path while installing (**MANDATORY**)
+      -Do not forget to check Add Python 3.7 to Path/Environment variable while installing (**MANDATORY**)
  3)   Download the source code from the following link-
       -  https://github.com/shashankbafna/cowin-vaccination-book-slot/archive/refs/heads/main.zip
  4)   Unzip & Extract the zip downloaded.
@@ -96,6 +96,8 @@ Special thanks to:
 ## SELECTION & FEATURES:
    -  Inputs:
       -  In Telegram, your messages act as input to the script.
+      **Mind the caps/digits/case of characters while entering.**
+      -  Index numbers are mentioned in front of the selections like in front of your name, in front of states, in front of districts etc.
       -  Mostly, _**the inputs are one time effort, as once entered, this will be saved in a file**_ for future run.
       -  If timeout happens, i.e. user doesnot respond within 100 sec from the time when bot's message arrives.
          -  Manual input can be given from keyboard but only on computer.
@@ -110,7 +112,6 @@ Special thanks to:
          -  Search for a week from when? today, tomorrow or date?
          -  Fee preferences? Free or Paid?
          -  Auto booking? **yes-please** or no
-      -  Mind the caps/digits/case of characters while entering.
 
 ## Share and Feedback
 -  Please let me know if this automation helped you, by giving a vote of thanks in my linked profile: https://www.linkedin.com/in/bafnashashank/
