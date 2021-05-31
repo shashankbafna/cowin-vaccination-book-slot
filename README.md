@@ -39,13 +39,34 @@ Special thanks to:
  ## Installation:
  This is a one time activity.
  1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
- 2)   Download the source code from the following link-
+      -  Add Python 3.7 to Path while installing (**MANDATORY**)
+ 3)   Download the source code from the following link-
       -  https://github.com/shashankbafna/cowin-vaccination-book-slot/archive/refs/heads/main.zip
- 3)   Unzip & Extract the zip downloaded.
- 4)   Go inside the Extracted folder ->src
+ 4)   Unzip & Extract the zip downloaded.
+ 5)   Go inside the Extracted folder ->src
       -  ![image](https://user-images.githubusercontent.com/54980800/120198763-1f138300-c240-11eb-8198-aca2ff40178f.png)
 
  5)   In the The Address bar, which is located at the top of File Explorer as shown above, displays the path of the currently selected folder, type "cmd"
  6)   This will open the command prompt with the location of script src.
  7)   Type the following command to install the dependent packages to run this script.
-      -  `pip install -r requirements.txt`
+      -  `pip install -r ../requirements.txt`
+      -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
+
+ 
+ ## STARTING & SUBSCRIBING:
+   - Subscribing:
+      If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
+      -  Open telegram app on mobile.
+      -  Search for userbot Name:CowinAuto (UserName@CowinAutoBot) in the telegram app.
+      -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, keep on following the instructions.*
+      -  Send the message to the userbot- displayed for the first time after starting the script.
+   -  Startup:
+      If all the above steps are done, we are good to fire the script.
+      - `python ./cowinVaccinationSlotAutoBooking.py`
+      - Follow the on screen instructions after starting the script.
+   ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
+   After posting the Subscribe message on telegram,
+   ![image](https://user-images.githubusercontent.com/54980800/120201561-37d16800-c243-11eb-96e1-1ccbb84ac9ba.png)
+
+   
+
