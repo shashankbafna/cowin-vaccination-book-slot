@@ -1,5 +1,5 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
-## _(Bot with captcha resolution & alerts to never miss the slot.)_
+## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
 
 _Personally, I have used this & we (me, Srishti) got vaccinated, hope it helps you as well._
 <br>
