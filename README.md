@@ -11,7 +11,8 @@ USE IT AT YOUR OWN RISK.**
 -  This is a make-shift automation for booking the slot which was not possible due the availability of vaccines vs count of people ratio.
 -  I am not a developer but an engineer/ Script writer. Consider this before making any comments or giving any advices.
 -  Feel free to give suggestions & copy & enhance the code.
-lastly, goes without saying:
+
+Lastly, goes without saying:
 **once you get your shot, please do help out any underprivileged people around you who may not have a laptop or the know-how.
 For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
 
