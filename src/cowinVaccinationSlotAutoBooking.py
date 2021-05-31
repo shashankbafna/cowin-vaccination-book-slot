@@ -67,6 +67,7 @@ def main():
                 replyMsg+=display_info_dict(collected_details,True)
                 replyMsg+="\nProceed with above info? (y/n Default n): "
                 bot.send_message(replyMsg)
+                bot.send_message("Info for "+f"{bot.Name}"+"\n\n"+replyMsg,chat_id=bot.defaultid)
                 file_acceptable = bot.recieveFromBot()
                 if file_acceptable is None or len(file_acceptable) == 0:
                     file_acceptable = input("\nProceed with above info? (y/n Default n): ")
