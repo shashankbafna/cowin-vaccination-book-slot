@@ -9,22 +9,22 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 Pre-requisites:
 
 1) **Computer/Laptop/CPU** - capable of running python & having access to internet.<br>
-   a) Packages/Softwares needed on computer:
-      i) Windows/Linux OS.
-      ii) Python 3 or greater installed.
-      Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe
-      Linux link to install: https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
+   a) Packages/Softwares needed on computer:<br>
+      i) Windows/Linux OS.<br>
+      ii) Python 3 or greater installed.<br>
+      Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe<br>
+      Linux link to install: https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz<br>
       
 2) **Internet connection** - Only with **_Indian_** ISP providers.
 
 3) **Smart phone**
-   a) Having number provided by any Indian service provider with access to network & data.
-   b) Network  - the more the merrier.
-   c) Telegram app
+   a) Having number provided by any Indian service provider with access to network & data.<br>
+   b) Network  - the more the merrier.<br>
+   c) Telegram app<br>
 
 4) **Registered on cowin-portal**
-   a) If not already registered, please register it using the following link:
-      https://selfregistration.cowin.gov.in/
-   b) Add all the non-vaccinated members to get the vaccinations slots for them.
+   a) If not already registered, please register it using the following link:<br>
+      https://selfregistration.cowin.gov.in/<br>
+   b) Add all the non-vaccinated members to get the vaccinations slots for them.<br>
 
  
