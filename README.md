@@ -24,11 +24,11 @@ Lastly, goes without saying:
 For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
 
 Special thanks to:
-1) pallupz: https://github.com/pallupz/covid-vaccine-booking/
-2) Telegram: https://web.telegram.org/
-3) Python: https://www.python.org/
-4) COWIN: https://www.cowin.gov.in/
-5) Lastly my wife: Srishti (@ournotesfromtheroads) (https://www.instagram.com/ournotesfromtheroads/)
+1) **pallupz**: For sourcing the raw python code. : https://github.com/pallupz/covid-vaccine-booking/
+2) **COWIN**: For providing open APIs. : https://www.cowin.gov.in/
+3) **Telegram**: For providing open APIs. : https://web.telegram.org/
+4) **Python**: Life without you is not possible. : https://www.python.org/
+5) Lastly my wife: **Srishti** (**@ournotesfromtheroads**): For being my guinea pig :(https://www.instagram.com/ournotesfromtheroads/)
 
 **Must Read - 1st Para**: https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2
 
@@ -81,7 +81,7 @@ Special thanks to:
    - Subscribing:
       If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
       -  Open telegram app on mobile.
-      -  Search for userbot Name:CowinAuto (UserName@CowinAutoBot) in the telegram app.
+      -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
       -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, keep on following the instructions.*
       -  Send the message to the userbot- displayed for the first time after starting the script.
    -  Startup:
