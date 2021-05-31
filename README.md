@@ -8,9 +8,10 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 
 **DISCLAIMER: 
 USE IT AT YOUR OWN RISK.**
--  This is a make-shift automation for booking the slot which was not possible due the availability of vaccines vs count of people ratio.
+-  This is a make-shift automation for booking the slot which was not possible manually due to the significant ratio for availability of vaccines & People in our country.
 -  I am not a developer but an engineer/ Script writer. Consider this before making any comments or giving any advices.
--  Feel free to give suggestions & copy & enhance the code.
+-  Feel free to give suggestions, Also, please copy & enhance the code if you want.
+   -  Make sure to let me know, hopefully, I can also help.
 
 Lastly, goes without saying:
 **once you get your shot, please do help out any underprivileged people around you who may not have a laptop or the know-how.
