@@ -15,23 +15,23 @@ Special thanks to:
 
 Pre-requisites:
 
-1) **Computer/Laptop/CPU** - capable of running python & having access to internet.<br>
-   -  Packages/Softwares needed on computer:<br>
-      - Windows/Linux OS.<br>
-      - Python 3 or greater installed.<br>
-         Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe<br>
-         Linux link to install: https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz<br>
+1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
+   -  Packages/Softwares needed on computer:
+      - Windows/Linux OS.
+      - Python 3 or greater installed.
+         Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe
+         Linux link to install: https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
       
 2) **Internet connection** - Only with **_Indian_** ISP providers.
 
 3) **Smart phone**<br>
-   a) Having number provided by any Indian service provider with access to network & data.<br>
-   b) Network  - the more the merrier.<br>
-   c) Telegram app<br>
+   - Having number provided by any Indian service provider with access to network & data.
+   - Network  - the more the merrier.<br>
+   - Telegram app<br>
 
 4) **Registered on cowin-portal**
-   a) If not already registered, please register it using the following link:<br>
-      https://selfregistration.cowin.gov.in/<br>
-   b) Add all the non-vaccinated members to get the vaccinations slots for them.<br>
+   -  If not already registered, please register it using the following link:
+      https://selfregistration.cowin.gov.in/
+   -  Add all the non-vaccinated members to get the vaccinations slots for them.
 
  
