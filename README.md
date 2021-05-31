@@ -23,6 +23,8 @@ Special thanks to:
 4) COWIN: https://www.cowin.gov.in/
 5) Lastly my wife: Srishti (@ournotesfromtheroads) (https://www.instagram.com/ournotesfromtheroads/)
 
+**Must Read - 1st Para**: https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2
+
 ## Pre-requisites:
 
 1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
