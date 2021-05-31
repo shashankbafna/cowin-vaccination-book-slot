@@ -59,7 +59,7 @@ class telegram_chatbot():
         print(f"3) Send this message within 5 minutes from now: Subscribe {captchSub}")
         self.selfid=self.recieveFromBot(timeout=300,isFirst=True,subsCap=f"Subscribe {captchSub}")
         print("Subscribing...")
-        filename=r"C:\Users\shash\Downloads\covid-vaccine-booking-main\src\config.cfg"
+        filename=r"config.cfg"
         config = cfg.ConfigParser()
         config['creds']={
             'token':self.token,

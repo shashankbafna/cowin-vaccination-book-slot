@@ -8,7 +8,7 @@ import base64
 import re
 from telegramBot import telegram_chatbot
 
-bot = telegram_chatbot(r"C:\Users\shash\Downloads\covid-vaccine-booking-main\src\config.cfg")
+bot = telegram_chatbot(r"config.cfg")
 
 BOOKING_URL = "https://cdn-api.co-vin.in/api/v2/appointment/schedule"
 BENEFICIARIES_URL = "https://cdn-api.co-vin.in/api/v2/appointment/beneficiaries"
@@ -401,7 +401,7 @@ def solve_captcha(resp):
     print(f'Solved captcha: {CAPTCHA_STRING}, Proceeding.')
     
     captcha_builder(resp.json(),disp=True)
-    bot.sendImage(img_loc=r"C:\Users\shash\Downloads\covid-vaccine-booking-main\captcha.png",caption=f'CAPTCHA Resolved:{CAPTCHA_STRING}')
+    bot.sendImage(img_loc=r"captcha.png",caption=f'CAPTCHA Resolved:{CAPTCHA_STRING}')
     return CAPTCHA_STRING
 
 def generate_captcha(request_header):
