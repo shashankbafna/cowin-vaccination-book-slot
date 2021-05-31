@@ -6,6 +6,8 @@ While maintaining the valid user session, it tries to find a vaccination slot fo
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
 
+**DISCLAIMER: USE IT AT YOUR OWN RISK. This is a make-shift automation for booking the slot which was not possible due the availability of vaccines vs count of people ratio.**
+
 Special thanks to:
 1) pallupz: https://github.com/pallupz/covid-vaccine-booking/
 2) Telegram: https://web.telegram.org/
@@ -37,6 +39,6 @@ Special thanks to:
  ## Installation:
  1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
  2)   Open command prompt:
-   -  win key + r (A popup will open)
-   -  type "cmd" & press enter.
+      -  win key + r (A popup will open)
+      -  type "cmd" & press enter.
  3)   
