@@ -6,7 +6,14 @@ While maintaining the valid user session, it tries to find a vaccination slot fo
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
 
-**DISCLAIMER: USE IT AT YOUR OWN RISK. This is a make-shift automation for booking the slot which was not possible due the availability of vaccines vs count of people ratio.**
+**DISCLAIMER: 
+USE IT AT YOUR OWN RISK.**
+-  This is a make-shift automation for booking the slot which was not possible due the availability of vaccines vs count of people ratio.
+-  I am not a developer but an engineer/ Script writer. Consider this before making any comments or giving any advices.
+-  Feel free to give suggestions & copy & enhance the code.
+lastly, goes without saying:
+**once you get your shot, please do help out any underprivileged people around you who may not have a laptop or the know-how.
+For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
 
 Special thanks to:
 1) pallupz: https://github.com/pallupz/covid-vaccine-booking/
@@ -67,7 +74,28 @@ Special thanks to:
    ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
    After posting the Subscribe message on telegram,
    ![image](https://user-images.githubusercontent.com/54980800/120201561-37d16800-c243-11eb-96e1-1ccbb84ac9ba.png)
+   
+   After this, just read the updates & inputs required in telegram.
 
-##FEATURES
+## SELECTION & FEATURES:
+   -  Inputs:
+      -  In Telegram, your messages act as input to the script.
+      -  Mostly, the inputs are one time effort, as once entered, this will be saved in a file for future run.
+      -  If timeout happens, i.e. user doesnot respond within 100 sec from the time when bot's message arrives.
+         -  Manual input can be given from keyboard but only on computer.
+      - Below are the list of Inputs gathered for the first run.
+         -  Enter the phone number
+         -  Enter OTP
+         -  Enter comma seperated index numbers of beneficiares
+         -  Search using pincode or State/District
+            -  Enter pincodes/ Index number of State, followed by Index number of Districts.
+         -  Minimum Availability required
+         -  How frequent the request should be sent to COWIN portal to find out the slot availability from APIs.
+         -  Search for a week from when? today, tomorrow or date?
+         -  Fee preferences? Free or Paid?
+         -  Auto booking? **yes-please** or no
+      -  Mind the caps/digits/case of characters while entering.
+
+## SCREENSHOTS:
 
 
