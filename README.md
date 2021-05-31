@@ -82,8 +82,7 @@ Special thanks to:
       If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
       -  Open telegram app on mobile.
       -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
-      -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, keep on following the instructions.*
-      -  Send the message to the userbot- displayed for the first time after starting the script.
+      -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
    -  Startup:
       If all the above steps are done, we are good to fire the script.
       - `python ./cowinVaccinationSlotAutoBooking.py`
