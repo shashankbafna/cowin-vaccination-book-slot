@@ -72,7 +72,7 @@ Special thanks to:
 
  5)   In the The Address bar, which is located at the top of File Explorer as shown above, displays the path of the currently selected folder, type "cmd"
  6)   This will open the command prompt with the location of script src.
- 7)   Type the following command to install the dependent packages to run this script.
+ 7)   Type the following command in command prompt (just opened in above step) to install the dependent packages to run this script.
       -  `pip install -r ../requirements.txt`
       -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
 
@@ -84,14 +84,14 @@ Special thanks to:
       -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
       -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
    -  Startup:
-      If all the above steps are done, we are good to fire the script.
+      If all the above steps are done, we are good to fire the script. Type below command in command prompt (already opened during installation)
       - `python ./cowinVaccinationSlotAutoBooking.py`
       - Follow the on screen instructions after starting the script.
    ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
    After posting the Subscribe message on telegram,
    ![image](https://user-images.githubusercontent.com/54980800/120201561-37d16800-c243-11eb-96e1-1ccbb84ac9ba.png)
    
-   After this, just read the updates & inputs required in telegram.
+   After this, just read the updates & inputs required in telegram. On laptop/computer screen, the logs will be printed.
 
 ## SELECTION & FEATURES:
    -  Inputs:
