@@ -1,10 +1,13 @@
 # cowin-vaccination-book-slot
-Vaccination slot booking telegram bot. - Suggestions &amp; feedbacks are welcome.
+Vaccination slot booking telegram bot.
+![image](https://user-images.githubusercontent.com/54980800/120207031-88e45a80-c249-11eb-95de-c9f11fa351ca.png)
 
 This automation subscribes to the telegram bot. Once registered mobile number is entered, it gets the cowin-session using otp provided by the user.
 While maintaining the valid user session, it tries to find a vaccination slot for the selected user & selected calendar.
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
+
+![image](https://user-images.githubusercontent.com/54980800/120206981-779b4e00-c249-11eb-8345-854486546cba.png)
 
 **DISCLAIMER: 
 USE IT AT YOUR OWN RISK.**
@@ -99,6 +102,15 @@ Special thanks to:
          -  Fee preferences? Free or Paid?
          -  Auto booking? **yes-please** or no
       -  Mind the caps/digits/case of characters while entering.
+
+## Share and Feedback
+-  Please let me know if this automation helped you, by giving a vote of thanks in my linked profile: https://www.linkedin.com/in/bafnashashank/
+-  Also I would like to hear from you guys about the feedback, suggestions, comments
+-  Feel free to ping me
+   -  Instagram: https://www.instagram.com/shashankbafna/
+   -  Facebook: https://www.facebook.com/shashbafna
+   -  or leave out comments in here to get any help.
+## _I will not mind sharing a cup of ~~coffee~~ **TEA**_
 
 ## SCREENSHOTS:
 ![image](https://user-images.githubusercontent.com/54980800/120204156-22aa0880-c246-11eb-94d5-1f0f7865c99c.png)
