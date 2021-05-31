@@ -1,5 +1,5 @@
-# cowin-vaccination-book-slot
-Vaccination slot booking telegram bot automation (with captcha resolution & alerting capabilities).<br>
+# cowin vaccination slot autobook telegram bot automation _(with captcha resolution & alerting capabilities)_
+
 _Personally, I have used this & we (me, Srishti) got vaccinated, hope it helps you as well._
 <br>
 ![image](https://user-images.githubusercontent.com/54980800/120207031-88e45a80-c249-11eb-95de-c9f11fa351ca.png)
