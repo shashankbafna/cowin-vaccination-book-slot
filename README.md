@@ -7,10 +7,10 @@ It checks for preferences such as vaccine type, state, pincode, district, paid/f
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
 
 Special thanks to:
-1) [pallupz]: https://github.com/pallupz/covid-vaccine-booking/
-2) [Telegram]: https://web.telegram.org/
-3) [Python]: https://www.python.org/
-4) [COWIN]: https://www.cowin.gov.in/
+1) pallupz: https://github.com/pallupz/covid-vaccine-booking/
+2) Telegram: https://web.telegram.org/
+3) Python: https://www.python.org/
+4) COWIN: https://www.cowin.gov.in/
 5) Lastly my wife: Srishti (@ournotesfromtheroads) (https://www.instagram.com/ournotesfromtheroads/)
 
 ## Pre-requisites:
