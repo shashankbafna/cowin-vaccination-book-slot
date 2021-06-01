@@ -20,16 +20,18 @@ OTP_PRO_URL = 'https://cdn-api.co-vin.in/api/v2/auth/generateMobileOTP'
 CANCEL_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/cancel'
 
 WARNING_BEEP_DURATION = (1000, 2000)
-
-import winsound
-def beep(freq, duration):
-    winsound.Beep(freq, duration)
-
-def inputMode(display_msg='',isTele=True):
-    if isTele:
-        print("test")
-    else:
-        print("test")
+try:
+    import winsound
+    def beep(freq, duration): 
+        winsound.Beep(freq, duration)
+except:
+    import os
+    def beep(freq,duration):
+        #apt-get install beep
+        try:
+            os.system('beep -f %s -l %s' % (freq,duration))
+        except:
+            print("Unable to find beep package on linux, try re-running after 'apt-get install beep' .")
 
 def viable_options(resp, minimum_slots, min_age_booking, fee_type, dose):
     options = []
@@ -72,7 +74,7 @@ def display_table(dict_list,ret=False):
     """
     header = ['IDX'] + list(dict_list[0].keys())
     rows = [[idx + 1] + list(x.values()) for idx, x in enumerate(dict_list)]
-    genTable=tabulate.tabulate(rows, header, tablefmt='grid')
+    genTable=tabulate.tabulate(rows, header, tablefmt='markdown')
     print(genTable)
     if ret:
         genTable+="\n"
@@ -199,10 +201,10 @@ def collect_user_details(request_header):
     bot.send_message(replyMsg)
     search_option = bot.recieveFromBot()
     if search_option is None or len(search_option) == 0:
-        search_option = '2'
+        search_option = 2
         bot.send_message(msg=f"_No input recieved, setting default as *{search_option}*_",parse_mode='markdown')
         #search_option = input(
-        """Search by Pincode? Or by State/District? \nEnter 1 for Pincode or 2 for State/District. (Default 2) : """)
+        #"""Search by Pincode? Or by State/District? \nEnter 1 for Pincode or 2 for State/District. (Default 2) : """)
 
     if not search_option or int(search_option) not in [1, 2]:
         search_option = 2
@@ -250,7 +252,7 @@ def collect_user_details(request_header):
         start_date = '2'
         bot.send_message(msg=f"_No input recieved, setting default as *{start_date}*_",parse_mode='markdown')
         #start_date = input(
-        '\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2: ')
+        #'\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2: ')
     if not start_date:
         start_date = 2
     elif start_date in ['1', '2']:
@@ -660,7 +662,7 @@ def get_districts(request_header):
 
         replyMsg=display_table(refined_states,True)
         replyMsg+="\nEnter State index: "
-        bot.send_message(replyMsg)
+        bot.send_message(replyMsg,parse_mode='markdown')
         state = int(bot.recieveFromBot())
         if state is None or state <= 0:
             state = int(input('\nEnter State index: '))
@@ -678,7 +680,7 @@ def get_districts(request_header):
 
             replyMsg=display_table(refined_districts,True)
             replyMsg+="\nEnter comma separated index numbers of districts to monitor : "
-            bot.send_message(replyMsg)
+            bot.send_message(replyMsg,parse_mode='markdown')
             reqd_districts = bot.recieveFromBot()
             if reqd_districts is None or len(reqd_districts) == 0:
                 reqd_districts = input('\nEnter comma separated index numbers of districts to monitor : ')
@@ -692,7 +694,7 @@ def get_districts(request_header):
             print(f'Selected districts: ')
             replyMsg=f'Selected districts: '
             replyMsg+=display_table(reqd_districts,True)
-            bot.send_message(replyMsg)
+            bot.send_message(replyMsg,parse_mode='markdown')
             return reqd_districts
 
         else:
@@ -744,7 +746,7 @@ def get_beneficiaries(request_header):
             refined_beneficiaries.append(tmp)
 
         replyMsg=display_table(refined_beneficiaries,True)
-        bot.send_message(replyMsg)
+        bot.send_message(replyMsg,parse_mode='markdown')
         print("""
         ################# IMPORTANT NOTES #################
         # 1. While selecting beneficiaries, make sure that selected beneficiaries are all taking the same dose: either first OR second.
@@ -779,7 +781,7 @@ def get_beneficiaries(request_header):
         print(f'Selected beneficiaries: ')
         replyMsg='Selected beneficiaries: '
         replyMsg+=display_table(reqd_beneficiaries,True)
-        bot.send_message(replyMsg)
+        bot.send_message(replyMsg,parse_mode='markdown')
         return reqd_beneficiaries
 
     else:
