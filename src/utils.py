@@ -74,7 +74,7 @@ def display_table(dict_list,ret=False):
     """
     header = ['IDX'] + list(dict_list[0].keys())
     rows = [[idx + 1] + list(x.values()) for idx, x in enumerate(dict_list)]
-    genTable=tabulate.tabulate(rows, header, tablefmt='markdown')
+    genTable=tabulate.tabulate(rows, header, tablefmt='presto')
     print(genTable)
     if ret:
         genTable+="\n"
