@@ -444,6 +444,7 @@ def book_appointment(request_header, details):
                 msg+="Hey! It's your lucky day!\n"
                 msg+=f"{resp.text}\n"
                 bot.send_message(msg)
+                bot.send_message("Booked for "+f"{bot.Name}",chat_id=bot.defaultid)
                 print('##############    BOOKED!  ############################    BOOKED!  ##############')
                 print("                        Hey, Hey, Hey! It's your lucky day!                       ")
                 print('\nPress any key thrice to exit program.')
