@@ -105,7 +105,9 @@ def confirm_and_proceed(collected_details):
     bot.send_message(msg=replyMsg)
     confirm=bot.recieveFromBot()
     if confirm is None or len(confirm) == 0:
-        confirm = input("\nProceed with above info (y/n Default y) : ")
+        confirm = 'y'
+        bot.send_message(msg=f"_No input recieved, setting default as *{confirm}*_",parse_mode='markdown')
+        #confirm = input("\nProceed with above info (y/n Default y) : ")
     confirm = confirm if confirm else 'y'
     if confirm != 'y':
         bot.send_message("Details not confirmed. Exiting process.")
@@ -197,7 +199,9 @@ def collect_user_details(request_header):
     bot.send_message(replyMsg)
     search_option = bot.recieveFromBot()
     if search_option is None or len(search_option) == 0:
-        search_option = input(
+        search_option = '2'
+        bot.send_message(msg=f"_No input recieved, setting default as *{search_option}*_",parse_mode='markdown')
+        #search_option = input(
         """Search by Pincode? Or by State/District? \nEnter 1 for Pincode or 2 for State/District. (Default 2) : """)
 
     if not search_option or int(search_option) not in [1, 2]:
@@ -233,7 +237,9 @@ def collect_user_details(request_header):
     bot.send_message(replyMsg)
     refresh_freq = bot.recieveFromBot()
     if refresh_freq is None or len(refresh_freq) == 0:
-        refresh_freq = input('How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : ')
+        refresh_freq = 15
+        bot.send_message(msg=f"_No input recieved, setting default as *{refresh_freq}*_",parse_mode='markdown')
+        #refresh_freq = input('How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : ')
     refresh_freq = int(refresh_freq) if refresh_freq and int(refresh_freq) >= 5 else 15
 
     # Get search start date
@@ -241,7 +247,9 @@ def collect_user_details(request_header):
     bot.send_message(replyMsg)
     start_date = bot.recieveFromBot()
     if start_date is None or len(start_date) == 0:
-        start_date = input(
+        start_date = '2'
+        bot.send_message(msg=f"_No input recieved, setting default as *{start_date}*_",parse_mode='markdown')
+        #start_date = input(
         '\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2: ')
     if not start_date:
         start_date = 2
@@ -266,7 +274,9 @@ def collect_user_details(request_header):
     print("===== BE CAREFUL WITH THIS OPTION! AUTO-BOOKING WILL BOOK THE FIRST AVAILABLE CENTRE, DATE, AND A RANDOM SLOT! =====")
     auto_book = bot.recieveFromBot()
     if auto_book is None or len(auto_book) == 0:
-        auto_book = input("Do you want to enable auto-booking? (yes-please or no) Default no: ")
+        auto_book = 'no'
+        bot.send_message(msg=f"_No input recieved, setting default as *{auto_book}*_",parse_mode='markdown')
+        #auto_book = input("Do you want to enable auto-booking? (yes-please or no) Default no: ")
     auto_book = 'no' if not auto_book else auto_book
 
     collected_details = {
@@ -580,7 +590,9 @@ def get_vaccine_preference():
     bot.send_message(replyMsg)
     preference = bot.recieveFromBot()
     if preference is None or len(preference) == 0:
-        preference = input("Enter 0 for No Preference, 1 for COVISHIELD, 2 for COVAXIN, or 3 for SPUTNIK V. Default 0 : ")
+        preference = 0
+        bot.send_message(msg=f"_No input recieved, setting default as *{preference}*_",parse_mode='markdown')
+        #preference = input("Enter 0 for No Preference, 1 for COVISHIELD, 2 for COVAXIN, or 3 for SPUTNIK V. Default 0 : ")
     preference = int(preference) if preference and int(preference) in [0, 1, 2, 3] else 0
 
     if preference == 1:
@@ -600,7 +612,9 @@ def get_fee_type_preference():
     bot.send_message(replyMsg)
     preference = bot.recieveFromBot()
     if preference is None or len(preference) == 0:
-        preference = input("Enter 0 for No Preference, 1 for Free Only, or 2 for Paid Only. Default 0 : ")
+        preference = 0
+        bot.send_message(msg=f"_No input recieved, setting default as *{preference}*_",parse_mode='markdown')
+        #preference = input("Enter 0 for No Preference, 1 for Free Only, or 2 for Paid Only. Default 0 : ")
     preference = int(preference) if preference and int(preference) in [0, 1, 2] else 0
 
     if preference == 1:
@@ -840,7 +854,9 @@ def generate_token_OTP(mobile, request_header):
                             bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
                             retry = bot.recieveFromBot()
                             if retry is None or len(retry) == 0:
-                                retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                                retry = 'y'
+                                bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
+                                #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
                         retry = retry if retry else 'y'
                         if retry == 'y':
                             pass
@@ -857,7 +873,9 @@ def generate_token_OTP(mobile, request_header):
                     bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
                     retry = bot.recieveFromBot()
                     if retry is None or len(retry) == 0:
-                        retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                        retry = 'y'
+                        bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
+                        #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
                 retry = retry if retry else 'y'
                 if retry == 'y':
                     pass
@@ -866,4 +884,3 @@ def generate_token_OTP(mobile, request_header):
 
         except Exception as e:
             print(str(e))
-

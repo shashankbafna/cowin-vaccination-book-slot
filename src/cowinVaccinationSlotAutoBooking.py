@@ -70,7 +70,9 @@ def main():
                 bot.send_message("Info for "+f"{bot.Name}"+"\n\n"+replyMsg,chat_id=bot.defaultid)
                 file_acceptable = bot.recieveFromBot()
                 if file_acceptable is None or len(file_acceptable) == 0:
-                    file_acceptable = input("\nProceed with above info? (y/n Default n): ")
+                    file_acceptable = 'n'
+                    bot.send_message(msg=f"_No input recieved, setting default as *{file_acceptable}*_",parse_mode='markdown')
+                    #file_acceptable = input("\nProceed with above info? (y/n Default n): ")
                 file_acceptable = file_acceptable if file_acceptable else 'n'
 
                 if file_acceptable != 'y':
@@ -120,7 +122,9 @@ def main():
                 tryOTP = bot.recieveFromBot(timeout="180")
                 print("Recieved from telegram: "+str(tryOTP))
                 if tryOTP is None or len(tryOTP) == 0:
-                    tryOTP = input('Try for a new Token? (y/n Default y): ')
+                    tryOTP = 'y'
+                    bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
+                    #tryOTP = input('Try for a new Token? (y/n Default y): ')
 
                 if tryOTP.lower() == 'y' or not tryOTP:
                     if not mobile:
