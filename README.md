@@ -4,15 +4,17 @@
 <br>
 <br>
 <img src="https://user-images.githubusercontent.com/54980800/120373493-0ab1b200-c336-11eb-9e63-9c2a0bbf5a4a.png" align="left" width="150px"/>
-Personally, we have used this & we (me, Srishti) got vaccinated, hope it helps you as well.
+<p>
+   <q>Personally, we have used this & we (me, Srishti) got vaccinated, hope it helps you as well.</q>
+</p>
 <br>
 <br>
-<pre>
+<blockquote>
 This automation subscribes to the telegram bot. Once registered mobile number is entered, it gets the cowin-session using otp provided by the user.
 While maintaining the valid user session, it tries to find a vaccination slot for the selected user & selected calendar.
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
-</pre>
+</blockquote>
 <br clear="left"/>
 
 ![image](https://user-images.githubusercontent.com/54980800/120206981-779b4e00-c249-11eb-8345-854486546cba.png)
