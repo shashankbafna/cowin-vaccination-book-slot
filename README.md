@@ -74,6 +74,7 @@ Special thanks to:
  6)   This will open the command prompt with the location of script src.
  7)   Type the following command in command prompt (just opened in above step) to install the dependent packages to run this script.
       -  `pip install -r ../requirements.txt`
+      Optional if you want to set this in a virtual env ->Only for advanced python users.
       -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
 
  
