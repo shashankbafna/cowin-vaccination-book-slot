@@ -21,9 +21,15 @@ CANCEL_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/cancel'
 
 WARNING_BEEP_DURATION = (1000, 2000)
 
-import winsound
-def beep(freq, duration):
-    winsound.Beep(freq, duration)
+try:
+    import winsound
+except ImportError:
+    import os
+    def beep(freq, duration):
+        os.system('beep -f %s -l %s' % (freq,duration))
+else:
+    def beep(freq, duration):
+        winsound.Beep(freq, duration)
 
 def inputMode(display_msg='',isTele=True):
     if isTele:
@@ -201,7 +207,7 @@ def collect_user_details(request_header):
     if search_option is None or len(search_option) == 0:
         search_option = '2'
         bot.send_message(msg=f"_No input recieved, setting default as *{search_option}*_",parse_mode='markdown')
-        #search_option = input(
+        search_option = input(
         """Search by Pincode? Or by State/District? \nEnter 1 for Pincode or 2 for State/District. (Default 2) : """)
 
     if not search_option or int(search_option) not in [1, 2]:
@@ -249,7 +255,7 @@ def collect_user_details(request_header):
     if start_date is None or len(start_date) == 0:
         start_date = '2'
         bot.send_message(msg=f"_No input recieved, setting default as *{start_date}*_",parse_mode='markdown')
-        #start_date = input(
+        start_date = input(
         '\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2: ')
     if not start_date:
         start_date = 2
