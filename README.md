@@ -78,8 +78,18 @@ Special thanks to:
 
  
  ## STARTING & SUBSCRIBING:
-   - Subscribing:
-      If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
+ If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
+   - Create Bot:
+      - Open telegram app on mobile.
+      - Search for **BotFather** userbot.
+      - type `/newbot`
+      - Enter any desired name for the bot
+      - Enter the unique username for the bot
+      - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message. 
+      Please see below image for clarification.
+      ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
+
+   -  Subscribe the bot to your app:
       -  Open telegram app on mobile.
       -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
       -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
