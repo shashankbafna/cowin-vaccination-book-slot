@@ -15,7 +15,7 @@ While maintaining the valid user session, it tries to find a vaccination slot fo
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
 </blockquote>
-<img src="https://user-images.githubusercontent.com/54980800/120206981-779b4e00-c249-11eb-8345-854486546cba.png" align="right" width="200px"/>
+<img src="https://user-images.githubusercontent.com/54980800/120206981-779b4e00-c249-11eb-8345-854486546cba.png" align="right" width="800px"/>
 <br clear="left"/>
 <br clear="right"/>
 
