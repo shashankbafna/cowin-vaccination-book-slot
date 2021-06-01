@@ -3,8 +3,8 @@
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
 
 
-<img src="https://user-images.githubusercontent.com/54980800/120373493-0ab1b200-c336-11eb-9e63-9c2a0bbf5a4a.png" align="left" width="200px"/>
-__Personally, I have used this & we (me, Srishti) got vaccinated, hope it helps you as well.__
+<img src="https://user-images.githubusercontent.com/54980800/120373493-0ab1b200-c336-11eb-9e63-9c2a0bbf5a4a.png" align="left" width="150px"/>
+Personally, we have used this & we (me, Srishti) got vaccinated, hope it helps you as well.
 <br>
 <br>
 <p>
