@@ -662,7 +662,7 @@ def get_districts(request_header):
 
         replyMsg=display_table(refined_states,True)
         replyMsg+="\nEnter State index: "
-        bot.send_message(replyMsg,parse_mode='markdown')
+        bot.send_message(replyMsg)
         state = int(bot.recieveFromBot())
         if state is None or state <= 0:
             state = int(input('\nEnter State index: '))
@@ -680,7 +680,7 @@ def get_districts(request_header):
 
             replyMsg=display_table(refined_districts,True)
             replyMsg+="\nEnter comma separated index numbers of districts to monitor : "
-            bot.send_message(replyMsg,parse_mode='markdown')
+            bot.send_message(replyMsg)
             reqd_districts = bot.recieveFromBot()
             if reqd_districts is None or len(reqd_districts) == 0:
                 reqd_districts = input('\nEnter comma separated index numbers of districts to monitor : ')
@@ -694,7 +694,7 @@ def get_districts(request_header):
             print(f'Selected districts: ')
             replyMsg=f'Selected districts: '
             replyMsg+=display_table(reqd_districts,True)
-            bot.send_message(replyMsg,parse_mode='markdown')
+            bot.send_message(replyMsg)
             return reqd_districts
 
         else:
@@ -746,7 +746,7 @@ def get_beneficiaries(request_header):
             refined_beneficiaries.append(tmp)
 
         replyMsg=display_table(refined_beneficiaries,True)
-        bot.send_message(replyMsg,parse_mode='markdown')
+        bot.send_message(replyMsg)
         print("""
         ################# IMPORTANT NOTES #################
         # 1. While selecting beneficiaries, make sure that selected beneficiaries are all taking the same dose: either first OR second.
@@ -781,7 +781,7 @@ def get_beneficiaries(request_header):
         print(f'Selected beneficiaries: ')
         replyMsg='Selected beneficiaries: '
         replyMsg+=display_table(reqd_beneficiaries,True)
-        bot.send_message(replyMsg,parse_mode='markdown')
+        bot.send_message(replyMsg)
         return reqd_beneficiaries
 
     else:
