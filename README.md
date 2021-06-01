@@ -82,10 +82,10 @@ Special thanks to:
    - Create Bot:
       - Open telegram app on mobile.
       - Search for **BotFather** userbot.
-      - type `/newbot`
-      - Enter any desired name for the bot
-      - Enter the unique username for the bot
-      - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message. 
+         - type `/newbot`
+         - Enter any desired name for the bot
+         - Enter the unique username for the bot
+         - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message. 
       Please see below image for clarification.
       ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
 
