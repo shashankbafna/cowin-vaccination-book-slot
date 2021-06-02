@@ -6,8 +6,9 @@ from captcha import captcha_builder
 from bs4 import BeautifulSoup
 import base64
 import re
-from telegramBot import telegram_chatbot
+import configparser as cfg
 
+from telegramBot import telegram_chatbot
 bot = telegram_chatbot(r"config.cfg")
 
 BOOKING_URL = "https://cdn-api.co-vin.in/api/v2/appointment/schedule"
@@ -32,6 +33,20 @@ except:
             os.system('beep -f %s -l %s' % (freq,duration))
         except:
             print("Unable to find beep package on linux, try re-running after 'apt-get install beep' .")
+
+def write_to_config(datadict):
+        config = cfg.ConfigParser()
+        config['DEFAULTS']=datadict
+        with open('runtime.cfg', 'w') as configfile:
+            config.write(configfile)
+
+def read_runtime_config(key):
+    config = cfg.ConfigParser()
+    config.read('runtime.cfg')
+    if key in config['DEFAULTS']:
+        return config.get('DEFAULTS', key)
+    else:
+        return None
 
 def viable_options(resp, minimum_slots, min_age_booking, fee_type, dose):
     options = []
@@ -455,6 +470,8 @@ def book_appointment(request_header, details):
                 msg="=====    BOOKED!  =====\n"
                 msg+="Hey! It's your lucky day!\n"
                 msg+=f"{resp.text}\n"
+                msg+="\n\nPlease take a screenshot, share your feedback & experience on instagram, make sure to tag (@ournotesfromtheroads & @shashankbafna).\n"
+                msg+="This will help many others & motivates us even more."
                 bot.send_message(msg)
                 bot.send_message("Booked for "+f"{bot.Name}",chat_id=bot.defaultid)
                 print('##############    BOOKED!  ############################    BOOKED!  ##############')
@@ -536,9 +553,15 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
                 random_slot = random.randint(1, len(option['slots']))
                 choice = f'1.{random_slot}'
             else:
-                choice = inputimeout(
-                    prompt='----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): ',
-                    timeout=20)
+                replyMsg="----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): "
+                bot.send_message(replyMsg)
+                choice = bot.recieveFromBot()
+                if choice is None or len(choice) == 0:
+                    choice = '.'
+                    bot.send_message(msg=f"_No input recieved, setting default as *{choice}*_",parse_mode='markdown')
+                #choice = inputimeout(
+                   #prompt='----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): ',
+                    #timeout=20)
 
         else:
             try:
@@ -817,6 +840,7 @@ def generate_token_OTP(mobile, request_header):
         sys.exit()
 
     valid_token = False
+    i=1
     while not valid_token:
         try:
             data = {"mobile": mobile,
@@ -831,7 +855,9 @@ def generate_token_OTP(mobile, request_header):
                 bot.send_message(replyMsg)
                 tryOTP = bot.recieveFromBot()
                 if tryOTP is None or len(tryOTP) == 0:
-                    OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
+                    bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
+                    bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                    #OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
                 else:
                     OTP = tryOTP
                 if OTP:
@@ -844,6 +870,7 @@ def generate_token_OTP(mobile, request_header):
                         token = token.json()['token']
                         bot.send_message("Token Generated, OTP validated.")
                         print(f'Token Generated: {token}')
+                        i=1
                         valid_token = True
                         return token
 
@@ -852,17 +879,23 @@ def generate_token_OTP(mobile, request_header):
                         print(f"Response: {token.text}")
                         bot.send_message(f"Unable to Validate OTP.\nResponse: {token.text}\nEnter the correct otp or type retry:")
                         retry = bot.recieveFromBot()
-                        if retry is None or len(retry) == 0:
-                            bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
-                            retry = bot.recieveFromBot()
+                        if i < 4:
                             if retry is None or len(retry) == 0:
-                                retry = 'y'
-                                bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
-                                #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
-                        retry = retry if retry else 'y'
-                        if retry == 'y':
-                            pass
+                                bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
+                                retry = bot.recieveFromBot()
+                                if retry is None or len(retry) == 0:
+                                    retry = 'y'
+                                    bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
+                                    i+=1
+                                    #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                            retry = retry if retry else 'y'
+                            if retry == 'y':
+                                pass
+                            else:
+                                sys.exit()
                         else:
+                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no valid OTP was generated for a long time.*",parse_mode='markdown')
+                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
                             sys.exit()
 
             else:
@@ -875,9 +908,15 @@ def generate_token_OTP(mobile, request_header):
                     bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
                     retry = bot.recieveFromBot()
                     if retry is None or len(retry) == 0:
-                        retry = 'y'
-                        bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
-                        #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                        if i < 4:
+                            retry = 'y'
+                            bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
+                            #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                            i+=1
+                        else:
+                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no valid Mobile number was entered for a long time.*",parse_mode='markdown')
+                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                            sys.exit()
                 retry = retry if retry else 'y'
                 if retry == 'y':
                     pass

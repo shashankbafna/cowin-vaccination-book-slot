@@ -4,8 +4,7 @@ import copy
 from types import SimpleNamespace
 import requests, sys, argparse, os, datetime
 from utils import generate_token_OTP, check_and_book, beep, BENEFICIARIES_URL, WARNING_BEEP_DURATION, \
-    display_info_dict, save_user_info, collect_user_details, get_saved_user_info, confirm_and_proceed, bot
-
+    display_info_dict, save_user_info, collect_user_details, get_saved_user_info, confirm_and_proceed, bot, write_to_config, read_runtime_config
 
 def main():
     parser = argparse.ArgumentParser()
@@ -33,14 +32,21 @@ def main():
             if args.mobile:
                 mobile = args.mobile
             else:
-                replyMsg="Enter the mobile number registered to access COWIN Portal: "
-                bot.send_message(replyMsg)
-                mobile = bot.recieveFromBot()
+                mobile = read_runtime_config('mobile')
                 if mobile is None or len(mobile) == 0:
-                    #mobile = '7875604546'
-                    mobile = input("Enter the registered mobile number: ")
-
+                    replyMsg="Enter the mobile number registered to access COWIN Portal: "
+                    bot.send_message(replyMsg)
+                    mobile = bot.recieveFromBot()
+                    if mobile is None or len(mobile) == 0:
+                        #mobile = '7875604546'
+                        mobile = input("Enter the registered mobile number: ")
+            
             token = generate_token_OTP(mobile, base_request_header)
+            dictdata={
+                'mobile':mobile,
+                'token':token
+                    }
+            write_to_config(dictdata)
 
         request_header = copy.deepcopy(base_request_header)
         request_header["Authorization"] = f"Bearer {token}"
@@ -93,6 +99,7 @@ def main():
         info = SimpleNamespace(**collected_details)
 
         token_valid = True
+        i=1
         while token_valid:
             request_header = copy.deepcopy(base_request_header)
             request_header["Authorization"] = f"Bearer {token}"
@@ -109,6 +116,7 @@ def main():
             # check if token is still valid
             beneficiaries_list = requests.get(BENEFICIARIES_URL, headers=request_header)
             if beneficiaries_list.status_code == 200:
+                i=1
                 token_valid = True
 
             else:
@@ -117,25 +125,43 @@ def main():
                 print('Token is INVALID.')
                 token_valid = False
                 beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
-                replyMsg="Try for a new Token? (y/n Default y):"
-                bot.send_message(replyMsg)
-                tryOTP = bot.recieveFromBot(timeout="180")
-                print("Recieved from telegram: "+str(tryOTP))
-                if tryOTP is None or len(tryOTP) == 0:
-                    tryOTP = 'y'
-                    bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
-                    #tryOTP = input('Try for a new Token? (y/n Default y): ')
-
-                if tryOTP.lower() == 'y' or not tryOTP:
-                    if not mobile:
-                        beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
-                        mobile = input("Enter the registered mobile number: ")
-                    token = generate_token_OTP(mobile, base_request_header)
+                
+                if token is not None and i < 4:
+                    print("Trying Existing Token once again to continue the session. No need to enter OTP.")
+                    bot.send_message(msg=f"*No need to enter SMS!* _Try no. *{i}* to maintain this session._",parse_mode='markdown')
+                    token = read_runtime_config('token')
                     token_valid = True
+                    i+=1
                 else:
-                    bot.send_message("Denied generation of new Token, Stopping Script..")
-                    print("Exiting")
-                    os.system("pause")
+                    print("Try for a new Token? (y/n Default y)")
+                    replyMsg="Try for a new Token? (y/n Default y):"
+                    bot.send_message(replyMsg)
+                    tryOTP = bot.recieveFromBot(timeout="180")
+                    print("Recieved from telegram: "+str(tryOTP))
+                    if tryOTP is None or len(tryOTP) == 0:
+                        tryOTP = 'y'
+                        bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
+                        #tryOTP = input('Try for a new Token? (y/n Default y): ')
+
+                    if tryOTP.lower() == 'y' or not tryOTP:
+                        if mobile is None or len(mobile) == 0:
+                            beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
+                            mobile = read_runtime_config('mobile')
+                            if mobile is None or len(mobile) == 0:
+                                replyMsg="Enter the mobile number registered to access COWIN Portal: "
+                                bot.send_message(replyMsg)
+                                mobile = bot.recieveFromBot()
+                                if mobile is None or len(mobile) == 0:
+                                    #mobile = '7875604546'
+                                    #mobile = input("Enter the registered mobile number: ")
+                                    bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no Mobile number was entered for a long time.*",parse_mode='markdown')
+                                    bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                        token = generate_token_OTP(mobile, base_request_header)
+                        token_valid = True
+                    else:
+                        bot.send_message("Denied generation of new Token, Stopping Script..")
+                        print("Exiting")
+                        os.system("pause")
 
     except Exception as e:
         print(str(e))
