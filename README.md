@@ -79,20 +79,20 @@ Special thanks to:
             -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
  
  ## START Script (on computer):
-      If installation is done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
-      - `python ./cowinVaccinationSlotAutoBooking.py`
-      -  Follow the on screen instructions after starting the script.
-         ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
-   
-      -  After posting the Subscribe message on telegram, Subscribe bot
-         ![image](https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png)
-   
-      -  Now respond to the questions asked from your bot, in telegram.
+   If installation is done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
+   - `python ./cowinVaccinationSlotAutoBooking.py`
+   -  Follow the on screen instructions after starting the script.
+      ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
+
+   -  After posting the Subscribe message on telegram, Subscribe bot
+      ![image](https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png)
+
+   -  Now respond to the questions asked from your bot, in telegram.
 
 ## MANDATORY (after startup).
-      -  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
-      
-      -  **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__**
+   -  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
+
+   -  **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__**
 
 ## SELECTION & FEATURES:
    -  Inputs:
