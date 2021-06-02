@@ -110,7 +110,8 @@ Special thanks to:
    ![image](https://user-images.githubusercontent.com/54980800/120201561-37d16800-c243-11eb-96e1-1ccbb84ac9ba.png)
    
    After this, just read the updates & inputs required in telegram. On laptop/computer screen, the logs will be printed.
-##**MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
+<br>
+**MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
 __ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__
 
 ## SELECTION & FEATURES:
