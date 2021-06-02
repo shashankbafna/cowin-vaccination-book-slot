@@ -1,6 +1,14 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
 ## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
+
+## HOW IT WORKS
+-  Your computer will act as a server to update messages & recieve messages from telegram bot.
+-  This automation script, gathers the recieved messages from the user & checks the details on COWIN portal.
+-  Your phone (Telegram app) will act as a client to recieve messages sent from the computer.
+-  If your computer stops or your script stops on computer, you will not see any updates on telegram, neither it will search for any slots.
+-  You need to constantly respond if you recieve any alerts on telegram as notification.
+
 <br>
 <br>
 <img src="https://user-images.githubusercontent.com/54980800/120373493-0ab1b200-c336-11eb-9e63-9c2a0bbf5a4a.png" align="left" width="200px"/>
@@ -102,7 +110,7 @@ Special thanks to:
       -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
       -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
    -  Startup:
-      If all the above steps are done, we are good to fire the script. Type below command in command prompt (already opened during installation)
+      If all the above steps are done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
       - `python ./cowinVaccinationSlotAutoBooking.py`
       - Follow the on screen instructions after starting the script.
    ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
