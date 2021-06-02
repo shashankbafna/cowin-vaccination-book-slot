@@ -85,8 +85,8 @@ Special thanks to:
    -  Follow the on screen instructions after starting the script.
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
-   -  Goto Mobile telegram app:
-      <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
+   Goto Mobile telegram app:
+   <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>   
       -  Post the Subscribe message on telegram which you see on your computer screen.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       Check this screenshot for further clarification.
