@@ -85,8 +85,9 @@ Special thanks to:
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
    -  After posting the Subscribe message on telegram, Subscribe bot
-      ![image](https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png)
-
+      <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="200px"/>
+      <br clear="left"/>
+      
    -  Now respond to the questions asked from your bot, in telegram.
 
 ## MANDATORY (after startup).
