@@ -92,10 +92,12 @@ Special thanks to:
       Check this screenshot for further clarification.
       <br>
    -  **MANDATORY (after startup)**
-      -  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
+      <p> **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.** </p>
 
-      -  **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__**
-   -  Now respond to the questions asked from your bot, in telegram.
+      <p> **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__** </p>
+      <br>
+      <br>
+      <p>Now respond to the questions asked from your bot, in telegram.</p>
    <br clear="left"/>
 
 ## SELECTION & FEATURES:
