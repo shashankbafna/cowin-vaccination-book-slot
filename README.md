@@ -27,17 +27,6 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 <br clear="left"/>
 <br clear="right"/>
 
-**DISCLAIMER: 
-USE IT AT YOUR OWN RISK.**
--  This is a make-shift automation for booking the slot which was not possible manually due to the significant ratio for availability of vaccines & People in our country.
--  I am not a developer but an engineer/ Script writer. Consider this before making any comments or giving any advices.
--  Feel free to give suggestions, Also, please copy & enhance the code if you want.
-   -  Make sure to let me know, hopefully, I can also help.
-
-Lastly, goes without saying:
-**once you get your shot, please do help out any underprivileged people around you who may not have a laptop or the know-how.
-For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
-
 Special thanks to:
 1) **pallupz**: For sourcing the raw python code. : https://github.com/pallupz/covid-vaccine-booking/
 2) **COWIN**: For providing open APIs. : https://www.cowin.gov.in/
@@ -45,31 +34,17 @@ Special thanks to:
 4) **Python**: Life without you is not possible. : https://www.python.org/
 5) Lastly my wife: **Srishti** (**@ournotesfromtheroads**): For being my guinea pig :(https://www.instagram.com/ournotesfromtheroads/)
 
-**Must Read - 1st Para**: https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2
-
-## Drawbacks:
-1) As I had an ios phone, It was not possible to automate otps, however, it is possible to automate otp transmission via android.
-   -  This results in entering the otp every 15 mins, to continue the session for searching the slots.
-   -  This requires constant response from the user when notified either via computer beep or telegram notification.
-2) Inputs & outputs on telegram can be beautified, right now, I have just pushed them from console.
-3) Exception handling for inputs & url requests.
-
 ## Pre-requisites:
-
 1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
    -  Packages/Softwares needed on computer:
       - Windows/Linux OS.
       - Python 3 or greater installed.
          Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe
-         Linux link to install: https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
-      
 2) **Internet connection** - Only with **_Indian_** ISP providers.
-
 3) **Smart phone**<br>
    - Having number provided by any Indian service provider with access to network & data.
    - Network  - the more the merrier.<br>
    - Telegram app<br>
-
 4) **Registered on cowin-portal**
    -  If not already registered, please register it using the following link:
       https://selfregistration.cowin.gov.in/
@@ -91,36 +66,33 @@ Special thanks to:
       -  `pip install -r ../requirements.txt`
       -  Optional if you want to run above command to install above dependencies in a virtual env ->Only for advanced python users.
       -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
-
+ 8)   On **Mobile/Phone**:
+      -  Create Bot:
+         - Search for **@BotFather** userbot.
+            - type `/newbot`
+            - Enter any desired name for the bot
+            - Enter the unique username for the bot
+            - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message.
+            Please see below image for clarification.
+            ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
+         -  Go back, again search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
+            -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
  
- ## STARTING & SUBSCRIBING:
- If you are running this for the first time, you will need to subscribe to telegram bot(**CowinAuto**).
-   - Create Bot:
-      - Open telegram app on mobile.
-      - Search for **BotFather** userbot.
-         - type `/newbot`
-         - Enter any desired name for the bot
-         - Enter the unique username for the bot
-         - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message. 
-      Please see below image for clarification.
-      ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
-
-   -  Subscribe the bot to your app:
-      -  Open telegram app on mobile.
-      -  Search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
-      -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
-   -  Startup:
-      If all the above steps are done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
+ ## START Script (on computer):
+      If installation is done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
       - `python ./cowinVaccinationSlotAutoBooking.py`
-      - Follow the on screen instructions after starting the script.
-   ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
-   After posting the Subscribe message on telegram,
-   ![image](https://user-images.githubusercontent.com/54980800/120201561-37d16800-c243-11eb-96e1-1ccbb84ac9ba.png)
+      -  Follow the on screen instructions after starting the script.
+         ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
    
-   After this, just read the updates & inputs required in telegram. On laptop/computer screen, the logs will be printed.
-<br>
-**MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
-__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__
+      -  After posting the Subscribe message on telegram, Subscribe bot
+         ![image](https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png)
+   
+      -  Now respond to the questions asked from your bot, in telegram.
+
+## MANDATORY (after startup).
+      -  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
+      
+      -  **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__**
 
 ## SELECTION & FEATURES:
    -  Inputs:
@@ -150,6 +122,26 @@ __ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will n
    -  Facebook: https://www.facebook.com/shashbafna
    -  or leave out comments in here to get any help.
 ## _I will not mind sharing a cup of ~~coffee~~ **TEA**_
+
+**Must Read - 1st Para**: https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2
+
+## Futurescope:
+1) As I had an ios phone, It was not possible to automate otps, however, it is possible to automate otp transmission via android.
+   -  This results in entering the otp every 15 mins, to continue the session for searching the slots.
+   -  This requires constant response from the user when notified either via computer beep or telegram notification.
+2) Inputs & outputs on telegram can be beautified, right now, I have just pushed them from console.
+3) Exception handling for inputs & url requests.
+
+**DISCLAIMER: 
+USE IT AT YOUR OWN RISK.**
+-  This is a make-shift automation for booking the slot which was not possible manually due to the significant ratio for availability of vaccines & People in our country.
+-  I am not a developer but an engineer/ Script writer. Consider this before making any comments or giving any advices.
+-  Feel free to give suggestions, Also, please copy & enhance the code if you want.
+   -  Make sure to let me know, hopefully, I can also help.
+
+Lastly, goes without saying:
+**once you get your shot, please do help out any underprivileged people around you who may not have a laptop or the know-how.
+For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
 
 ## SCREENSHOTS:
 ![image](https://user-images.githubusercontent.com/54980800/120204156-22aa0880-c246-11eb-94d5-1f0f7865c99c.png)
