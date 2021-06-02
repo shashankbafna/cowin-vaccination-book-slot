@@ -892,9 +892,11 @@ def generate_token_OTP(mobile, request_header):
                             if retry == 'y':
                                 pass
                             else:
+                                bot.send_message(msg=f"*BOT SCRIPT stopped on computer because invalid OTP was entered again.*",parse_mode='markdown')
+                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
                                 sys.exit()
                         else:
-                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no valid OTP was generated for a long time.*",parse_mode='markdown')
+                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because invalid OTP was generated for a long time.*",parse_mode='markdown')
                             bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
                             sys.exit()
 
