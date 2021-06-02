@@ -79,16 +79,18 @@ Special thanks to:
             -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
  
  ## START Script (on computer):
-   If installation is done, we are good to fire the script on computer. Type below command in command prompt (already opened during installation)
-   - `python ./cowinVaccinationSlotAutoBooking.py`
+   If installation is done, we are good to fire the script on computer.
+   -  Type below command in command prompt (already opened during installation)
+      `python ./cowinVaccinationSlotAutoBooking.py`
    -  Follow the on screen instructions after starting the script.
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
    -  Goto Mobile telegram app:
+      <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
       -  Post the Subscribe message on telegram which you see on your computer screen.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       Check this screenshot for further clarification.
-      <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
+      <br>
    -  **MANDATORY (after startup)**
       -  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
 
