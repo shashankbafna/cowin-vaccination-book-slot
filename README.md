@@ -154,9 +154,10 @@ Lastly, goes without saying:
 For instance any sort of domestic help, or the staff in your local grocery store, or literally the thousands of people who don't have the knowledge or luxury we do.**
 
 ## SCREENSHOTS:
-   <img src="https://user-images.githubusercontent.com/54980800/120204156-22aa0880-c246-11eb-94d5-1f0f7865c99c.png" align="left" width="200px"/>
-   <img src="https://user-images.githubusercontent.com/54980800/120204294-4705e500-c246-11eb-8752-64bfae605fd8.png" align="left" width="200px"/>
-   <img src="https://user-images.githubusercontent.com/54980800/120204373-5be27880-c246-11eb-9ed2-a57c3ce71396.png" align="left" width="200px"/>
-   <img src="https://user-images.githubusercontent.com/54980800/120204494-82081880-c246-11eb-9418-f99db43525ac.png" align="left" width="200px"/>
-   <img src="https://user-images.githubusercontent.com/54980800/120204610-a4019b00-c246-11eb-89d0-c142e88d02dc.png" align="left" width="200px"/>
+   Click to enlarge
+   <img src="https://user-images.githubusercontent.com/54980800/120204156-22aa0880-c246-11eb-94d5-1f0f7865c99c.png" align="left" width="190px"/>
+   <img src="https://user-images.githubusercontent.com/54980800/120204294-4705e500-c246-11eb-8752-64bfae605fd8.png" align="left" width="190px"/>
+   <img src="https://user-images.githubusercontent.com/54980800/120204373-5be27880-c246-11eb-9ed2-a57c3ce71396.png" align="left" width="190px"/>
+   <img src="https://user-images.githubusercontent.com/54980800/120204494-82081880-c246-11eb-9418-f99db43525ac.png" align="left" width="190px"/>
+   <img src="https://user-images.githubusercontent.com/54980800/120204610-a4019b00-c246-11eb-89d0-c142e88d02dc.png" align="left" width="190px"/>
 <br clear="left">
