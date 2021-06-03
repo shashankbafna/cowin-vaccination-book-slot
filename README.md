@@ -1,7 +1,7 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
 ## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
 
-_June-03-2021/ 2130 hrs_: **8 successfully booked**, 4 still searching.
+_June-03-2021/ 2130 hrs_: **8 successfully booked**, 4 still searching.<br>
 _Locations being tried_: **Kerala** (Ernakulam), **Telangana**(Hyderabad), **Maharashtra**(Pune, Mumbai), **Delhi**, **Ladakh** (Kargil), **Karnataka** (Bengaluru)
 
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
