@@ -1,5 +1,9 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
 ## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
+
+_June-03-2021/ 2130 hrs_: **8 successfully booked**, 4 still searching.
+_Locations being tried_: **Kerala** (Ernakulam), **Telangana**(Hyderabad), **Maharashtra**(Pune, Mumbai), **Delhi**, **Ladakh** (Kargil), **Karnataka** (Bengaluru)
+
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
 
 ## HOW IT WORKS
@@ -86,7 +90,7 @@ Special thanks to:
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
    -  Goto Mobile telegram app:   
-      -  Post the Subscribe message on telegram which you see on your computer screen.
+      -  Post the <Subscribe ID> message (displayed on your computer screen). Send this to telegram @CovinAutoBot (CovinAuto) user.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
       Check this screenshot for further clarification.
