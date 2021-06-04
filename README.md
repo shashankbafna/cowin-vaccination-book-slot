@@ -87,7 +87,7 @@ Special thanks to:
       -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
   This is a one time activity.
  ## START Script (on computer):
-   If installation is done manually, proceed with step 1 else resume from step 2.
+   If installation is done manually, proceed with step 1 else contine from step 2.
    1) Type below command in command prompt (already opened during installation)
       `python ./Booking.py`
    -  Follow the on screen instructions after starting the script.
