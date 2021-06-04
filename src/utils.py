@@ -8,8 +8,12 @@ import base64
 import re
 import configparser as cfg
 
+import platform
+is_windows = any(platform.win32_ver())
+
 from telegramBot import telegram_chatbot
 bot = telegram_chatbot(r"config.cfg")
+
 
 BOOKING_URL = "https://cdn-api.co-vin.in/api/v2/appointment/schedule"
 BENEFICIARIES_URL = "https://cdn-api.co-vin.in/api/v2/appointment/beneficiaries"
@@ -22,17 +26,21 @@ CANCEL_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/cancel'
 
 WARNING_BEEP_DURATION = (1000, 2000)
 try:
-    import winsound
-    def beep(freq, duration): 
-        winsound.Beep(freq, duration)
-except:
-    import os
-    def beep(freq,duration):
-        #apt-get install beep
-        try:
+    if is_windows:
+        import winsound
+        def beep(freq, duration): 
+            winsound.Beep(freq, duration)
+    else:
+        import os
+        def beep(freq,duration):
+            #apt-get install beep
             os.system('beep -f %s -l %s' % (freq,duration))
-        except:
-            print("Unable to find beep package on linux, try re-running after 'apt-get install beep' .")
+except:
+    if is_windows:
+        print("Unable to import winsound on windows, try 'pip install winsound' in command prompt. Alerting on this PC won't work.")
+    else:
+        print("Unable to find beep package on linux, try re-running after 'apt-get install beep'. Alerting on this PC won't work.")
+    
 
 def write_to_config(datadict):
         config = cfg.ConfigParser()
@@ -89,7 +97,8 @@ def display_table(dict_list,ret=False):
     """
     header = ['IDX'] + list(dict_list[0].keys())
     rows = [[idx + 1] + list(x.values()) for idx, x in enumerate(dict_list)]
-    genTable=tabulate.tabulate(rows, header, tablefmt='presto')
+    #genTable=tabulate.tabulate(rows, header, tablefmt='presto')
+    genTable=tabulate.tabulate(rows, tablefmt='presto')
     print(genTable)
     if ret:
         genTable+="\n"
@@ -112,6 +121,7 @@ def display_info_dict(details,ret=False):
             print(f"\t{key}\t: {value}")
     print(genPrint)
     if ret:
+        genPrint+="\n"
         return genPrint
 
 def confirm_and_proceed(collected_details):
@@ -851,13 +861,17 @@ def generate_token_OTP(mobile, request_header):
             if txnId.status_code == 200:
                 print(f"Successfully requested OTP for mobile number {mobile} at {datetime.datetime.today()}..")
                 txnId = txnId.json()['txnId']
-                replyMsg="Enter OTP (If this takes more than 2 minutes, press Enter to retry):"
+                replyMsg="Enter OTP recieved in SMS (If this takes more than 2 minutes, press Enter to retry):"
                 bot.send_message(replyMsg)
                 tryOTP = bot.recieveFromBot()
                 if tryOTP is None or len(tryOTP) == 0:
-                    bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
-                    bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
-                    #OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
+                    bot.send_message(msg=f"*BOT SCRIPT*: {i}. _Waiting for you to enter OTP recieved in SMS_",parse_mode='markdown')
+                    if i > 4:
+                        bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
+                        bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                        #OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
+                        sys.exit()
+                    i+=1
                 else:
                     OTP = tryOTP
                 if OTP:
@@ -869,7 +883,14 @@ def generate_token_OTP(mobile, request_header):
                     if token.status_code == 200:
                         token = token.json()['token']
                         bot.send_message("Token Generated, OTP validated.")
-                        print(f'Token Generated: {token}')
+                        dictdata={
+                                'mobile':mobile,
+                                'token':token,
+                                'Name':bot.Name,
+                                'username': bot.username
+                                 }
+                        write_to_config(dictdata)
+
                         i=1
                         valid_token = True
                         return token
