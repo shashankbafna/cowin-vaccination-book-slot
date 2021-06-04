@@ -143,13 +143,13 @@ def main():
                                 #mobile = '7875604546'
                                 #mobile = input("Enter the registered mobile number: ")
                                 bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was i nvalid.*",parse_mode='markdown')
-                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
 
                         token = generate_token_OTP(mobile, base_request_header)
                         token_valid = True
                     else:
                         bot.send_message("Denied generation of new Token, Stopping Script..")
-                        bot.send_message(msg=f"*Telegram communication ended from your computer.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer to re-establish.",parse_mode='markdown')
+                        bot.send_message(msg=f"*Telegram communication ended from your computer.*\nPlease re-run '_python ./Booking.py_' on computer to re-establish.",parse_mode='markdown')
                         print("Exiting")
                         os.system("pause")
 

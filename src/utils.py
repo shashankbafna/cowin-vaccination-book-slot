@@ -11,7 +11,7 @@ import configparser as cfg
 import platform
 is_windows = any(platform.win32_ver())
 
-from telegramBot import telegram_chatbot
+from telegramBot import telegram_chatbot, read_runtime_config, write_to_config
 bot = telegram_chatbot(r"config.cfg")
 
 
@@ -41,20 +41,6 @@ except:
     else:
         print("Unable to find beep package on linux, try re-running after 'apt-get install beep'. Alerting on this PC won't work.")
     
-
-def write_to_config(datadict):
-        config = cfg.ConfigParser()
-        config['DEFAULTS']=datadict
-        with open('runtime.cfg', 'w') as configfile:
-            config.write(configfile)
-
-def read_runtime_config(key):
-    config = cfg.ConfigParser()
-    config.read('runtime.cfg')
-    if key in config['DEFAULTS']:
-        return config.get('DEFAULTS', key)
-    else:
-        return None
 
 def viable_options(resp, minimum_slots, min_age_booking, fee_type, dose):
     options = []
@@ -444,16 +430,15 @@ def solve_captcha(resp):
 
     for char in CAPTCHA:
         CAPTCHA_STRING += char[1]
-    print(f'Solved captcha: {CAPTCHA_STRING}, Proceeding.')
-    
+    #print(f'Solved captcha: {CAPTCHA_STRING}, Proceeding.')
     captcha_builder(resp.json(),disp=True)
-    bot.sendImage(img_loc=r"captcha.png",caption=f'CAPTCHA Resolved:{CAPTCHA_STRING}')
+    #bot.sendImage(img_loc=r"captcha.png",caption=f'CAPTCHA Resolved:{CAPTCHA_STRING}')
     return CAPTCHA_STRING
 
 def generate_captcha(request_header):
     print('================================= GETTING CAPTCHA ==================================================')
     resp = requests.post(CAPTCHA_URL, headers=request_header)
-    print(f'Captcha Response Code: {resp.status_code}')
+    #print(f'Captcha Response Code: {resp.status_code}')
     
     if resp.status_code == 200:
         #return captcha_builder(resp.json())
@@ -490,7 +475,9 @@ def book_appointment(request_header, details):
                 msg+="Hey! It's your lucky day!\n"
                 msg+=f"{resp.text}\n"
                 msg+="\n\nPlease take a screenshot, share your feedback & experience on instagram, make sure to tag (@ournotesfromtheroads & @shashankbafna).\n"
-                msg+="This will help many others & motivates us even more."
+                msg+="This will help many others & motivates us even more.\n"
+                msg+="Also make sure to star mark this effort.\n"
+                msg+="https://github.com/shashankbafna/cowin-vaccination-book-slot\n"
                 bot.send_message(msg)
                 bot.send_message("Booked for "+f"{bot.Name}",chat_id=bot.defaultid)
                 print('##############    BOOKED!  ############################    BOOKED!  ##############')
@@ -878,7 +865,7 @@ def generate_token_OTP(mobile, request_header):
                     tryOTP = bot.recieveFromBot()
                     if i > 4:
                         bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
-                        bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                        bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                         #OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
                         sys.exit()
                     i+=1
@@ -908,27 +895,25 @@ def generate_token_OTP(mobile, request_header):
                     else:
                         print('Unable to Validate OTP')
                         print(f"Response: {token.text}")
-                        bot.send_message(f"Unable to Validate OTP.\nResponse: {token.text}\nEnter the correct otp or type retry:")
-                        retry = bot.recieveFromBot()
+                        bot.send_message(f"Unable to Validate OTP.\nResponse: {token.text}\n")
                         if i < 4:
+                            bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
+                            retry = bot.recieveFromBot()
                             if retry is None or len(retry) == 0:
-                                bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
-                                retry = bot.recieveFromBot()
-                                if retry is None or len(retry) == 0:
-                                    retry = 'y'
-                                    bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
-                                    i+=1
-                                    #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                                retry = 'y'
+                                bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
+                                i+=1
+                                #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
                             retry = retry if retry else 'y'
                             if retry == 'y':
                                 pass
                             else:
                                 bot.send_message(msg=f"*BOT SCRIPT stopped on computer because invalid OTP was entered again.*",parse_mode='markdown')
-                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                                 sys.exit()
                         else:
                             bot.send_message(msg=f"*BOT SCRIPT stopped on computer because invalid OTP was generated for a long time.*",parse_mode='markdown')
-                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                             sys.exit()
 
             else:
@@ -948,7 +933,7 @@ def generate_token_OTP(mobile, request_header):
                             i+=1
                         else:
                             bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no valid Mobile number was entered for a long time.*",parse_mode='markdown')
-                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
+                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                             sys.exit()
                 retry = retry if retry else 'y'
                 if retry == 'y':

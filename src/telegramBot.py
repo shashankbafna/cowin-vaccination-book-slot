@@ -8,10 +8,12 @@ import re
 def read_runtime_config(key):
     config = cfg.ConfigParser()
     config.read('runtime.cfg')
-    if key in config['DEFAULTS']:
-        return config.get('DEFAULTS', key)
-    else:
-        return None
+    if 'DEFAULTS' in config:
+        if key in config['DEFAULTS']:
+            return config.get('DEFAULTS', key)
+        else:
+            return None
+    return None
 
 def write_to_config(datadict):
     config = cfg.ConfigParser()
@@ -21,15 +23,16 @@ def write_to_config(datadict):
 
 class telegram_chatbot():
 
-    def __init__(self, config):
+    def __init__(self, config,flag=True):
         self.config=config
         self.offset = None
         self.defaultid = '1830115947'
-        self.token = self.read_token_from_config_file()
+        self.flag = flag
         self.org = "https://api.telegram.org/bot{}/"
+        self.token = self.read_token_from_config_file()
         self.base = self.org.format(self.token)
-        self.selfid = self.read_selfid_from_config_file()
         self.botname = json.loads(requests.get(self.org.format(self.token) +"getme").content)["result"]["username"]
+        self.selfid = self.read_selfid_from_config_file()
         self.Name = read_runtime_config('Name')
         self.username = read_runtime_config('username')
 
@@ -98,7 +101,7 @@ class telegram_chatbot():
         self.send_message(f'\n*Success!!*\nConnection established with {self.botname}.\n',chat_id=self.selfid,parse_mode='markdown')
         self.send_message(f'\n*{self.botname} will recieve updates only if BookingScript.py is running on your computer*\n',chat_id=self.selfid,parse_mode='markdown')
         self.send_message(f'\n*{self.botname}* will ask if any input is needed.\n',chat_id=self.selfid,parse_mode='markdown')
-        self.send_message(f'\n*Click to continue-->* @{self.botname}',chat_id=self.selfid,parse_mode='markdown')
+        self.send_message(f'\nClick to continue>>>@{self.botname}',chat_id=self.selfid)
         self.send_message(f'\n\n*CowinAutoBot will now only be useful, if you are re-installing the setup.* @{self.botname}',chat_id=self.selfid,parse_mode='markdown')
         self.send_message(f'\n_Disconnecting CowinAutoBot._\n',chat_id=self.selfid,parse_mode='markdown')
         print("Subscribing...")
@@ -118,7 +121,7 @@ class telegram_chatbot():
         parser.read(self.config)
         if 'selfid' in parser['creds']:
             return parser.get('creds', 'selfid')
-        else: 
+        elif self.flag: 
             self.subscribe_To_Telegram()
             self.selfid=self.defaultid
             return self.selfid
@@ -133,10 +136,10 @@ class telegram_chatbot():
             'chat_id' : int(chat_id),
             'caption': caption
             }
-        print(f"{url}\n{files}\n{data}")
+        #print(f"{url}\n{files}\n{data}")
         r= requests.post(url, files=files, data=data)
-        print(f"Captcha send status:, response={r.text}")
-        print(r.status_code, r.reason, r.content)
+        #print(f"Captcha send status:, response={r.text}")
+        #print(r.status_code, r.reason, r.content)
     
     def sendImageRemoteFile(self,img_url,chat_id=None,caption=""):
         if chat_id is None:
@@ -170,7 +173,8 @@ class telegram_chatbot():
                     if message == subsCap and isFirst:
                         #print(f'message: { message } == {subsCap}')
                         self.Name = str(item["message"]["from"]["first_name"])
-                        self.username = str(item["message"]["from"]["username"])
+                        if "username" in item["message"]["from"]:
+                            self.username = str(item["message"]["from"]["username"])
                         self.selfid = str(item["message"]["from"]["id"])
                         self.send_message(f'{self.selfid} --{self.Name}:(@{self.username}) Subscribed.',chat_id=self.defaultid);
                         if self.defaultid != self.selfid:
@@ -204,7 +208,8 @@ class telegram_chatbot():
                             if self.Name == None:
                                 self.Name = str(item["message"]["from"]["first_name"])
                             if self.username == None:
-                                self.username = str(item["message"]["from"]["username"])
+                                if "username" in item["message"]["from"]:
+                                    self.username = str(item["message"]["from"]["username"])
                     except:
                         message = None
         self.offset=update_id
