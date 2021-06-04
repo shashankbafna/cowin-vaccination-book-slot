@@ -88,7 +88,7 @@ Special thanks to:
          -  Optional if you want to run above command to install above dependencies in a virtual env ->Only for advanced python users.
          -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
   
- ## START Script (on computer):
+ ## STARTUP Script (on computer):
    If installation is done manually, proceed with step 1 else contine from step 2.
    1) Type below command in command prompt (already opened during installation)
       `python ./Booking.py`
