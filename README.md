@@ -54,8 +54,23 @@ Special thanks to:
       https://selfregistration.cowin.gov.in/
    -  Add all the non-vaccinated members to get the vaccinations slots for them.
 
- ## Installation:
+ ## Create BOT (in Telegram)
+ This is a one time activity. If you already have a bot & its token, you can proceed to Installation step.
+ - On **Mobile/Phone**:
+      -  Create Bot:
+         - Search for **@BotFather** userbot.
+            - type `/newbot`
+            - Enter any desired name for the bot
+            - Enter the unique username for the bot
+            - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message.
+            Please see below image for clarification.
+            ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
+
+ ## Installation
  This is a one time activity.
+ if you are on windows 10 & have adminitrator rights:
+ Right
+ 
  1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
       -Do not forget to check Add Python 3.7 to Path/Environment variable while installing (**MANDATORY**)
  3)   Download the source code from the following link-
@@ -70,29 +85,15 @@ Special thanks to:
       -  `pip install -r ../requirements.txt`
       -  Optional if you want to run above command to install above dependencies in a virtual env ->Only for advanced python users.
       -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
- 8)   
- 
- ## Create BOT (in Telegram)
- - On **Mobile/Phone**:
-      -  Create Bot:
-         - Search for **@BotFather** userbot.
-            - type `/newbot`
-            - Enter any desired name for the bot
-            - Enter the unique username for the bot
-            - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message.
-            Please see below image for clarification.
-            ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
-         -  Go back, again search for userbot **Name**:_CowinAuto_ (**UserName**: "_@CowinAutoBot_") in the telegram app.
-            -  Click START or Say hi to the bot - *BOT WILL NOT RESPOND AT THIS MOMENT, Proceed to startup.*
- 
+  This is a one time activity.
  ## START Script (on computer):
-   If installation is done, we are good to fire the script on computer.
-   -  Type below command in command prompt (already opened during installation)
+   If installation is done manually, proceed with step 1 else resume from step 2.
+   1) Type below command in command prompt (already opened during installation)
       `python ./Booking.py`
    -  Follow the on screen instructions after starting the script.
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
-   -  Goto Mobile telegram app:   
+   2) Goto Mobile telegram app:   
       -  Post the <Subscribe ID> message (displayed on your computer screen). Send this to telegram @CovinAutoBot (CovinAuto) user.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
