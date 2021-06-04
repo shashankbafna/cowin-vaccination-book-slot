@@ -68,24 +68,26 @@ Special thanks to:
 
  ## Installation
  This is a one time activity.
- if you are on windows 10 & have adminitrator rights:
- Right
- 
- 1)   Install latest python if not already present from the link mentioned in **Pre-requisites**
-      -Do not forget to check Add Python 3.7 to Path/Environment variable while installing (**MANDATORY**)
- 3)   Download the source code from the following link-
+   1)  Download the source code from the following link-
       -  https://github.com/shashankbafna/cowin-vaccination-book-slot/archive/refs/heads/main.zip
- 4)   Unzip & Extract the zip downloaded.
- 5)   Go inside the Extracted folder ->src
-      -  ![image](https://user-images.githubusercontent.com/54980800/120198763-1f138300-c240-11eb-8198-aca2ff40178f.png)
-
- 5)   In the The Address bar, which is located at the top of File Explorer as shown above, displays the path of the currently selected folder, type "cmd"
- 6)   This will open the command prompt with the location of script src.
- 7)   Type the following command in command prompt (just opened in above step) to install the dependent packages to run this script.
-      -  `pip install -r ../requirements.txt`
-      -  Optional if you want to run above command to install above dependencies in a virtual env ->Only for advanced python users.
-      -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
-  This is a one time activity.
+   2)   Unzip & Extract the zip downloaded.
+   
+   - if you are on windows 10 & have adminitrator rights:
+      - right click on setup.ps1 & Run with PowerShell
+      - Installation completed, you can skip all the below steps. Proceed to Startup, 2nd step.
+   - else if you do not have windows 10 or Admin rights, continue following the below steps.
+      1)   Go inside the Extracted folder ->src
+      2)   Install latest python if not already present from the link mentioned in **Pre-requisites**
+         -  Do not forget to check Add Python 3.7 to Path/Environment variable while installing (**MANDATORY**)
+      3)   Go inside the Extracted folder ->src
+      4)   In the The Address bar, which is located at the top of File Explorer as shown below, displays the path of the currently selected folder, type "cmd"
+         -  ![image](https://user-images.githubusercontent.com/54980800/120198763-1f138300-c240-11eb-8198-aca2ff40178f.png)
+      5)   This will open the command prompt with the location of script src.
+      6)   Type the following command in command prompt (just opened in above step) to install the dependent packages to run this script.
+         -  `pip install -r ../requirements.txt`
+         -  Optional if you want to run above command to install above dependencies in a virtual env ->Only for advanced python users.
+         -  ![image](https://user-images.githubusercontent.com/54980800/120200115-98f83c00-c241-11eb-86f2-39f5b9386b65.png)
+  
  ## START Script (on computer):
    If installation is done manually, proceed with step 1 else contine from step 2.
    1) Type below command in command prompt (already opened during installation)
