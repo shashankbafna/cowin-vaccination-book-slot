@@ -85,7 +85,7 @@ Special thanks to:
  ## START Script (on computer):
    If installation is done, we are good to fire the script on computer.
    -  Type below command in command prompt (already opened during installation)
-      `python ./cowinVaccinationSlotAutoBooking.py`
+      `python ./Booking.py`
    -  Follow the on screen instructions after starting the script.
       ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
