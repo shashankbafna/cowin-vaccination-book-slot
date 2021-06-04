@@ -870,19 +870,19 @@ def generate_token_OTP(mobile, request_header):
             if txnId.status_code == 200:
                 print(f"Successfully requested OTP for mobile number {mobile} at {datetime.datetime.today()}..")
                 txnId = txnId.json()['txnId']
-                replyMsg="Enter OTP recieved in SMS (If this takes more than 2 minutes, press Enter to retry):"
+                replyMsg="Enter OTP for {mobile} received in SMS (If this takes more than 2 minutes, press retry):"
                 bot.send_message(replyMsg)
                 tryOTP = bot.recieveFromBot()
                 if tryOTP is None or len(tryOTP) == 0:
                     bot.send_message(msg=f"*BOT SCRIPT*: {i}. _Waiting for you to enter OTP recieved in SMS_",parse_mode='markdown')
+                    tryOTP = bot.recieveFromBot()
                     if i > 4:
                         bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
                         bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./cowinVaccinationSlotAutoBooking.py_' on computer.",parse_mode='markdown')
                         #OTP = input("Enter OTP (If this takes more than 2 minutes, press Enter to retry): ")
                         sys.exit()
                     i+=1
-                else:
-                    OTP = tryOTP
+                OTP = tryOTP
                 if OTP:
                     data = {"otp": sha256(str(OTP).encode('utf-8')).hexdigest(), "txnId": txnId}
                     print(f"Validating OTP..")
