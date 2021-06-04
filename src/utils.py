@@ -95,10 +95,11 @@ def display_table(dict_list,ret=False):
         2. Add an Index column, and
         3. Displays the data in tabular format
     """
+    genTable="\n"
     header = ['IDX'] + list(dict_list[0].keys())
     rows = [[idx + 1] + list(x.values()) for idx, x in enumerate(dict_list)]
     #genTable=tabulate.tabulate(rows, header, tablefmt='presto')
-    genTable=tabulate.tabulate(rows, tablefmt='presto')
+    genTable+=tabulate.tabulate(rows, tablefmt='presto')
     print(genTable)
     if ret:
         genTable+="\n"
@@ -106,7 +107,7 @@ def display_table(dict_list,ret=False):
         
 
 def display_info_dict(details,ret=False):
-    genPrint=""
+    genPrint="\n"
     for key, value in details.items():
         if isinstance(value, list):
             if all(isinstance(item, dict) for item in value):
@@ -365,6 +366,14 @@ def check_calendar_by_district(request_header, vaccine_type, location_dtls, star
         print(str(e))
         beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
 
+def test_Token(request_header):
+    resp = requests.get(CALENDAR_URL_PINCODE.format('560103', 1), headers=request_header)
+    if resp.status_code == 401:
+        print('TOKEN INVALID')
+        return False
+    elif resp.status_code == 200:
+        print('TOKEN Still VALID')
+        return True
 
 def check_calendar_by_pincode(request_header, vaccine_type, location_dtls, start_date, minimum_slots, min_age_booking, fee_type, dose):
     """
@@ -883,6 +892,7 @@ def generate_token_OTP(mobile, request_header):
                     if token.status_code == 200:
                         token = token.json()['token']
                         bot.send_message("Token Generated, OTP validated.")
+                        
                         dictdata={
                                 'mobile':mobile,
                                 'token':token,

@@ -41,9 +41,7 @@ def main():
                         #mobile = '7875604546'
                         mobile = input("Enter the registered mobile number: ")
             
-            token = read_runtime_config('token')
-            if token is None or len(token) == 0:
-                token = generate_token_OTP(mobile, base_request_header)            
+            token = generate_token_OTP(mobile, base_request_header)
             
         request_header = copy.deepcopy(base_request_header)
         request_header["Authorization"] = f"Bearer {token}"
@@ -96,7 +94,6 @@ def main():
         info = SimpleNamespace(**collected_details)
 
         token_valid = True
-        i=1
         while token_valid:
             request_header = copy.deepcopy(base_request_header)
             request_header["Authorization"] = f"Bearer {token}"
@@ -113,7 +110,6 @@ def main():
             # check if token is still valid
             beneficiaries_list = requests.get(BENEFICIARIES_URL, headers=request_header)
             if beneficiaries_list.status_code == 200:
-                i=1
                 token_valid = True
 
             else:
@@ -123,22 +119,15 @@ def main():
                 token_valid = False
                 beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
                 
-                if token is not None and i < 4:
-                    print("Trying Existing Token once again to continue the session. No need to enter OTP.")
-                    bot.send_message(msg=f"*No need to enter SMS!* _Try no. *{i}* to maintain this session._",parse_mode='markdown')
-                    token = read_runtime_config('token')
-                    token_valid = True
-                    i+=1
-                else:
-                    print("Try for a new Token? (y/n Default y)")
-                    replyMsg="Try for a new Token? (y/n Default y):"
-                    bot.send_message(replyMsg)
-                    tryOTP = bot.recieveFromBot(timeout="180")
-                    print("Recieved from telegram: "+str(tryOTP))
-                    if tryOTP is None or len(tryOTP) == 0:
-                        tryOTP = 'y'
-                        bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
-                        #tryOTP = input('Try for a new Token? (y/n Default y): ')
+                print("Try for a new Token? (y/n Default y)")
+                replyMsg="Try for a new Token? (y/n Default y):"
+                bot.send_message(replyMsg)
+                tryOTP = bot.recieveFromBot(timeout="180")
+                print("Recieved from telegram: "+str(tryOTP))
+                if tryOTP is None or len(tryOTP) == 0:
+                    tryOTP = 'y'
+                    bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
+                    #tryOTP = input('Try for a new Token? (y/n Default y): ')
 
                     if tryOTP.lower() == 'y' or not tryOTP:
                         if mobile is None or len(mobile) == 0:

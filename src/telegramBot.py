@@ -201,6 +201,10 @@ class telegram_chatbot():
                     try:
                         if str(item["message"]["from"]["id"]) == self.selfid:
                             message = str(item["message"]["text"])
+                            if self.Name == None:
+                                self.Name = str(item["message"]["from"]["first_name"])
+                            if self.username == None:
+                                self.username = str(item["message"]["from"]["username"])
                     except:
                         message = None
         self.offset=update_id
