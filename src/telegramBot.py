@@ -5,6 +5,20 @@ import io
 from random import randint
 import re
 
+def read_runtime_config(key):
+    config = cfg.ConfigParser()
+    config.read('runtime.cfg')
+    if key in config['DEFAULTS']:
+        return config.get('DEFAULTS', key)
+    else:
+        return None
+
+def write_to_config(datadict):
+    config = cfg.ConfigParser()
+    config['DEFAULTS']=datadict
+    with open('runtime.cfg', 'w') as configfile:
+        config.write(configfile)
+
 class telegram_chatbot():
 
     def __init__(self, config):
@@ -16,8 +30,8 @@ class telegram_chatbot():
         self.base = self.org.format(self.token)
         self.selfid = self.read_selfid_from_config_file()
         self.botname = json.loads(requests.get(self.org.format(self.token) +"getme").content)["result"]["username"]
-        self.Name = self.read_runtime_config('Name')
-        self.username = self.read_runtime_config('username')
+        self.Name = read_runtime_config('Name')
+        self.username = read_runtime_config('username')
 
     def set_Offset(self):
         url = self.base + "getUpdates"
@@ -31,20 +45,6 @@ class telegram_chatbot():
                     update_id = item["update_id"]
         #print(f"self.offset:{update_id}")
         self.offset=update_id
-
-    def read_runtime_config(key):
-        config = cfg.ConfigParser()
-        config.read('runtime.cfg')
-        if key in config['DEFAULTS']:
-            return config.get('DEFAULTS', key)
-        else:
-            return None
-    
-    def write_to_config(datadict):
-        config = cfg.ConfigParser()
-        config['DEFAULTS']=datadict
-        with open('runtime.cfg', 'w') as configfile:
-            config.write(configfile)
 
     def delete_webhook(self):
         webhookStatus = json.loads(requests.get(self.base + 'getWebhookInfo').content)["result"]["url"]
