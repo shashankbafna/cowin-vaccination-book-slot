@@ -230,32 +230,32 @@ def collect_user_details(request_header):
         location_dtls = get_pincodes()
 
     replyMsg="\n ===== Additional Info ===== \n"
-    print("\n================================= Additional Info =================================\n")
-    replyMsg+=f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : '
-    # Set filter condition
-    bot.send_message(replyMsg)
-    minimum_slots = bot.recieveFromBot()
-    if minimum_slots is None or len(minimum_slots) == 0:
-        minimum_slots = input(f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : ')
-    minimum_slots = int(minimum_slots)
-    if minimum_slots:
-        minimum_slots = int(minimum_slots) if int(minimum_slots) >= len(beneficiary_dtls) else len(beneficiary_dtls)
-    else:
-        minimum_slots = len(beneficiary_dtls)
-
+    # print("\n================================= Additional Info =================================\n")
+    # replyMsg+=f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : '
+    # # Set filter condition
+    # bot.send_message(replyMsg)
+    # minimum_slots = bot.recieveFromBot()
+    # if minimum_slots is None or len(minimum_slots) == 0:
+    #     minimum_slots = input(f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : ')
+    # minimum_slots = int(minimum_slots)
+    # if minimum_slots:
+    #     minimum_slots = int(minimum_slots) if int(minimum_slots) >= len(beneficiary_dtls) else len(beneficiary_dtls)
+    # else:
+    #     minimum_slots = len(beneficiary_dtls)
+    minimum_slots=len(beneficiary_dtls)
 
     # Get refresh frequency
-    replyMsg='How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : '
+    replyMsg='How often do you want to refresh the calendar (in seconds)? Range(10-100) default (30) : '
     bot.send_message(replyMsg)
-    refresh_freq = bot.recieveFromBot()
-    if refresh_freq is None or len(refresh_freq) == 0:
-        refresh_freq = 15
+    refresh_freq = int(bot.recieveFromBot())
+    if refresh_freq is None or refresh_freq < 10 or refresh_freq > 100:
+        refresh_freq = 30
         bot.send_message(msg=f"_No input recieved, setting default as *{refresh_freq}*_",parse_mode='markdown')
         #refresh_freq = input('How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : ')
     refresh_freq = int(refresh_freq) if refresh_freq and int(refresh_freq) >= 5 else 15
 
     # Get search start date
-    replyMsg='\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2: '
+    replyMsg='\nSearch for next seven day starting from when?\n1 for today,\n2 for tomorrow, \nor provide a date in the format DD-MM-YYYY. Default 2: '
     bot.send_message(replyMsg)
     start_date = bot.recieveFromBot()
     if start_date is None or len(start_date) == 0:
@@ -279,8 +279,8 @@ def collect_user_details(request_header):
     # Get preference of Free/Paid option
     fee_type = get_fee_type_preference()
     replyMsg='\n=========== CAUTION! CAUTION! ===========\n'
-    replyMsg+="===== BE CAREFUL WITH THIS OPTION! AUTO-BOOKING WILL BOOK THE FIRST AVAILABLE CENTRE, DATE, AND A RANDOM SLOT! ====="
-    replyMsg+="Do you want to enable auto-booking? (yes-please or no) Default no: "
+    replyMsg+="===== BE CAREFUL WITH THIS OPTION! =======\nAUTO-BOOKING WILL BOOK THE 1st AVAILABLE CENTRE, DATE, AND A RANDOM SLOT!\n\n"
+    replyMsg+="Do you want to enable auto-booking? ( yes-please or no ) Default no: "
     bot.send_message(replyMsg)
     print("\n=========== CAUTION! =========== CAUTION! CAUTION! =============== CAUTION! =======\n")
     print("===== BE CAREFUL WITH THIS OPTION! AUTO-BOOKING WILL BOOK THE FIRST AVAILABLE CENTRE, DATE, AND A RANDOM SLOT! =====")
@@ -472,9 +472,9 @@ def book_appointment(request_header, details):
                 msg="=====    BOOKED!  =====\n"
                 msg+="Hey! It's your lucky day!\n"
                 msg+=f"{resp.text}\n"
-                msg+="\n\nPlease take a screenshot, share your feedback & experience on instagram, make sure to tag (@ournotesfromtheroads & @shashankbafna).\n"
-                msg+="This will help many others & motivates us even more.\n"
-                msg+="Also make sure to star mark this effort.\n"
+                msg+="\n\nPlease take a screenshot, share your feedback and experience on instagram, make sure to tag (@ournotesfromtheroads and @shashankbafna).\n"
+                msg+="This will help many others and motivates us even more.\n"
+                msg+="Also make sure to star mark this effort in the below link.\n"
                 msg+="https://github.com/shashankbafna/cowin-vaccination-book-slot\n"
                 bot.send_message(msg)
                 bot.send_message("Booked for "+f"{bot.Name}",chat_id=bot.defaultid)
