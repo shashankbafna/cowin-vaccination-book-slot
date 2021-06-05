@@ -96,7 +96,7 @@ Special thanks to:
       -  Follow the on screen instructions after starting the script.
 
    2) Goto Mobile telegram app:   
-      -  Send /start  to @CovinAutoBot (CovinAuto) & click <Subscribe ID> link.
+      -  Search for user @CovinAutoBot (CovinAuto) & click or type /start. -> click SubscribeID link.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
       Check this screenshot for further clarification.
