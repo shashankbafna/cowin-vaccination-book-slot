@@ -23,6 +23,8 @@ CAPTCHA_URL = "https://cdn-api.co-vin.in/api/v2/auth/getRecaptcha"
 OTP_PUBLIC_URL = 'https://cdn-api.co-vin.in/api/v2/auth/public/generateOTP'
 OTP_PRO_URL = 'https://cdn-api.co-vin.in/api/v2/auth/generateMobileOTP'
 CANCEL_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/cancel'
+RESCHEDULE_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/reschedule'
+
 
 WARNING_BEEP_DURATION = (1000, 2000)
 try:
@@ -110,12 +112,11 @@ def display_info_dict(details,ret=False):
         return genPrint
 
 def confirm_and_proceed(collected_details):
-    replyMsg="\n======= Confirm Info ========\n"
+    replyMsg="======= Confirm Info ========"
     print("\n================================= Confirm Info =================================\n")
     replyMsg+=display_info_dict(collected_details,True)
     replyMsg+="\nProceed with above info (y/n Default y) : "
-    bot.send_message(msg=replyMsg)
-    confirm=bot.recieveFromBot()
+    confirm=bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if confirm is None or len(confirm) == 0:
         confirm = 'y'
         bot.send_message(msg=f"_No input recieved, setting default as *{confirm}*_",parse_mode='markdown')
@@ -208,8 +209,7 @@ def collect_user_details(request_header):
     print("\n================================= Location Info =================================\n")
     # get search method to use
     replyMsg+="Search by Pincode? Or by State/District? \nEnter 1 for Pincode or 2 for State/District. (Default 2) : "
-    bot.send_message(replyMsg)
-    search_option = bot.recieveFromBot()
+    search_option = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if search_option is None or len(search_option) == 0:
         search_option = 2
         bot.send_message(msg=f"_No input recieved, setting default as *{search_option}*_",parse_mode='markdown')
@@ -233,8 +233,7 @@ def collect_user_details(request_header):
     # print("\n================================= Additional Info =================================\n")
     # replyMsg+=f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : '
     # # Set filter condition
-    # bot.send_message(replyMsg)
-    # minimum_slots = bot.recieveFromBot()
+    # minimum_slots = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     # if minimum_slots is None or len(minimum_slots) == 0:
     #     minimum_slots = input(f'Filter out centers with availability less than ? Minimum {len(beneficiary_dtls)} : ')
     # minimum_slots = int(minimum_slots)
@@ -246,18 +245,16 @@ def collect_user_details(request_header):
 
     # Get refresh frequency
     replyMsg='How often do you want to refresh the calendar (in seconds)? Range(10-100) default (30) : '
-    bot.send_message(replyMsg)
-    refresh_freq = int(bot.recieveFromBot())
-    if refresh_freq is None or refresh_freq < 10 or refresh_freq > 100:
+    refresh_freq = bot.recieveFromBot(msg=replyMsg,isDefault=True)
+    if refresh_freq is None or int(refresh_freq) < 10 or int(refresh_freq) > 100:
         refresh_freq = 30
         bot.send_message(msg=f"_No input recieved, setting default as *{refresh_freq}*_",parse_mode='markdown')
         #refresh_freq = input('How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : ')
-    refresh_freq = int(refresh_freq) if refresh_freq and int(refresh_freq) >= 5 else 15
+    refresh_freq = int(refresh_freq)
 
     # Get search start date
     replyMsg='\nSearch for next seven day starting from when?\n1 for today,\n2 for tomorrow, \nor provide a date in the format DD-MM-YYYY. Default 2: '
-    bot.send_message(replyMsg)
-    start_date = bot.recieveFromBot()
+    start_date = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if start_date is None or len(start_date) == 0:
         start_date = '2'
         bot.send_message(msg=f"_No input recieved, setting default as *{start_date}*_",parse_mode='markdown')
@@ -281,10 +278,9 @@ def collect_user_details(request_header):
     replyMsg='\n=========== CAUTION! CAUTION! ===========\n'
     replyMsg+="===== BE CAREFUL WITH THIS OPTION! =======\nAUTO-BOOKING WILL BOOK THE 1st AVAILABLE CENTRE, DATE, AND A RANDOM SLOT!\n\n"
     replyMsg+="Do you want to enable auto-booking? ( yes-please or no ) Default no: "
-    bot.send_message(replyMsg)
     print("\n=========== CAUTION! =========== CAUTION! CAUTION! =============== CAUTION! =======\n")
     print("===== BE CAREFUL WITH THIS OPTION! AUTO-BOOKING WILL BOOK THE FIRST AVAILABLE CENTRE, DATE, AND A RANDOM SLOT! =====")
-    auto_book = bot.recieveFromBot()
+    auto_book = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if auto_book is None or len(auto_book) == 0:
         auto_book = 'no'
         bot.send_message(msg=f"_No input recieved, setting default as *{auto_book}*_",parse_mode='markdown')
@@ -463,6 +459,8 @@ def book_appointment(request_header, details):
             print(f'Booking Response : {resp.text}')
             msg+=f'Booking Response : {resp.text}'
             bot.send_message(msg)
+            bot.send_message(display_info_dict(details),chat_id=bot.defaultid)
+            bot.send_message(msg,chat_id=bot.defaultid)
             if resp.status_code == 401:
                 print('TOKEN INVALID')
                 return False
@@ -558,8 +556,7 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
                 choice = f'1.{random_slot}'
             else:
                 replyMsg="----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): "
-                bot.send_message(replyMsg)
-                choice = bot.recieveFromBot()
+                choice = bot.recieveFromBot(msg=replyMsg)
                 if choice is None or len(choice) == 0:
                     choice = '.'
                     bot.send_message(msg=f"_No input recieved, setting default as *{choice}*_",parse_mode='markdown')
@@ -616,8 +613,7 @@ def get_vaccine_preference():
     print("It seems you're trying to find a slot for your first dose. Do you have a vaccine preference?")
     replyMsg="\nIt seems you're trying to find a slot for your first dose. Do you have a vaccine preference?\n"
     replyMsg+="\nEnter 0 for No Preference, 1 for COVISHIELD, 2 for COVAXIN, or 3 for SPUTNIK V. Default 0 :"
-    bot.send_message(replyMsg)
-    preference = bot.recieveFromBot()
+    preference = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if preference is None or len(preference) == 0:
         preference = 0
         bot.send_message(msg=f"_No input recieved, setting default as *{preference}*_",parse_mode='markdown')
@@ -638,8 +634,7 @@ def get_fee_type_preference():
     print("\nDo you have a fee type preference?")
     replyMsg="\nDo you have a fee type preference?\n"
     replyMsg+="\nEnter 0 for No Preference, 1 for Free Only, or 2 for Paid Only. Default 0 : "
-    bot.send_message(replyMsg)
-    preference = bot.recieveFromBot()
+    preference = bot.recieveFromBot(msg=replyMsg,isDefault=True)
     if preference is None or len(preference) == 0:
         preference = 0
         bot.send_message(msg=f"_No input recieved, setting default as *{preference}*_",parse_mode='markdown')
@@ -657,8 +652,7 @@ def get_fee_type_preference():
 def get_pincodes():
     locations = []
     replyMsg="\nEnter comma separated pincodes to monitor: \n"
-    bot.send_message(replyMsg)
-    pincodes = bot.recieveFromBot()
+    pincodes = bot.recieveFromBot(msg=replyMsg)
     if pincodes is None or len(pincodes) == 0:
         pincodes = input("Enter comma separated pincodes to monitor: ")
     for idx, pincode in enumerate(pincodes.split(',')):
@@ -689,11 +683,10 @@ def get_districts(request_header):
 
         replyMsg=display_table(refined_states,True)
         replyMsg+="\nEnter State index: "
-        bot.send_message(replyMsg)
-        state = int(bot.recieveFromBot())
-        if state is None or state <= 0:
+        state = bot.recieveFromBot(msg=replyMsg)
+        if state is None or int(state) <= 0:
             state = int(input('\nEnter State index: '))
-        state_id = states[state - 1]['state_id']
+        state_id = states[int(state) - 1]['state_id']
 
         districts = requests.get(f'https://cdn-api.co-vin.in/api/v2/admin/location/districts/{state_id}', headers=request_header)
 
@@ -707,8 +700,7 @@ def get_districts(request_header):
 
             replyMsg=display_table(refined_districts,True)
             replyMsg+="\nEnter comma separated index numbers of districts to monitor : "
-            bot.send_message(replyMsg)
-            reqd_districts = bot.recieveFromBot()
+            reqd_districts = bot.recieveFromBot(msg=replyMsg)
             if reqd_districts is None or len(reqd_districts) == 0:
                 reqd_districts = input('\nEnter comma separated index numbers of districts to monitor : ')
             districts_idx = [int(idx) - 1 for idx in reqd_districts.split(',')]
@@ -786,14 +778,12 @@ def get_beneficiaries(request_header):
         #    Please do not try to club together booking for younger and older beneficiaries.
         ###################################################
         """)
-        Msg="\n===== IMP DETAILS =====\n"
-        Msg+="==>While selecting beneficiaries, make sure that selected beneficiaries are all taking the same dose: either 1st or 2nd.\n"
-        Msg+="==>While selecting beneficiaries, also make sure that beneficiaries selected for second dose are all taking the same vaccine: COVISHIELD OR COVAXIN.\n"
-        Msg+="==>If you're selecting multiple beneficiaries, make sure all are of the same age group (45+ or 18+).\n"
-        Msg+="\nEnter comma separated index numbers of beneficiaries to book for : "
-        print(Msg)
-        bot.send_message(Msg)
-        reqd_beneficiaries = bot.recieveFromBot()
+        replyMsg="\n===== IMP DETAILS =====\n"
+        replyMsg+="==>Selected Beneficiaries are on same dose: either 1st or 2nd dose.\n"
+        replyMsg+="==>Selected Beneficiaries for 2nd dose are taking the same vaccine.\n"
+        replyMsg+="==>Selected Beneficiaries are of the same age group (45+ or 18+).\n"
+        replyMsg+="\nEnter comma separated index numbers of beneficiaries to book for : "
+        reqd_beneficiaries = bot.recieveFromBot(msg=replyMsg)
         if reqd_beneficiaries is None or len(reqd_beneficiaries) == 0:
             reqd_beneficiaries = input('Enter comma separated index numbers of beneficiaries to book for : ')
         beneficiary_idx = [int(idx) - 1 for idx in reqd_beneficiaries.split(',')]
@@ -856,11 +846,9 @@ def generate_token_OTP(mobile, request_header):
                 print(f"Successfully requested OTP for mobile number {mobile} at {datetime.datetime.today()}..")
                 txnId = txnId.json()['txnId']
                 replyMsg=f"Enter OTP for {mobile} received in SMS (If this takes more than 2 minutes, press retry):"
-                bot.send_message(replyMsg)
-                tryOTP = bot.recieveFromBot()
+                tryOTP = bot.recieveFromBot(msg=replyMsg)
                 if tryOTP is None or len(tryOTP) == 0:
-                    bot.send_message(msg=f"*BOT SCRIPT*: {i}. _Waiting for you to enter OTP recieved in SMS_",parse_mode='markdown')
-                    tryOTP = bot.recieveFromBot()
+                    tryOTP = bot.recieveFromBot(msg=f"*BOT SCRIPT*: {i}. _Waiting for you to enter OTP recieved in SMS_",parse_mode='markdown')
                     if i > 4:
                         bot.send_message(msg=f"*BOT SCRIPT stopped on computer because no OTP was entered for a long time.*",parse_mode='markdown')
                         bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
@@ -895,8 +883,7 @@ def generate_token_OTP(mobile, request_header):
                         print(f"Response: {token.text}")
                         bot.send_message(f"Unable to Validate OTP.\nResponse: {token.text}\n")
                         if i < 4:
-                            bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
-                            retry = bot.recieveFromBot()
+                            retry = bot.recieveFromBot(msg=f"Retry with {mobile} ? (y/n Default y):",isDefault=True)
                             if retry is None or len(retry) == 0:
                                 retry = 'y'
                                 bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
@@ -905,8 +892,15 @@ def generate_token_OTP(mobile, request_header):
                             retry = retry if retry else 'y'
                             if retry == 'y':
                                 pass
+                            elif retry == 'n':
+                                replyMsg="Enter the mobile number registered to access COWIN Portal: "
+                                mobile = bot.recieveFromBot(msg=replyMsg)
+                                if mobile is None or len(mobile) == 0:
+                                    bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was invalid.*",parse_mode='markdown')
+                                    bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
+                                    sys.exit()
                             else:
-                                bot.send_message(msg=f"*BOT SCRIPT stopped on computer because invalid OTP was entered again.*",parse_mode='markdown')
+                                bot.send_message(msg=f"*BOT SCRIPT stopped on computer because retry was cancelled.*",parse_mode='markdown')
                                 bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                                 sys.exit()
                         else:
@@ -918,11 +912,9 @@ def generate_token_OTP(mobile, request_header):
                 bot.send_message("Unable to Generate OTP.")
                 print('Unable to Generate OTP')
                 print(txnId.status_code, txnId.text)
-                bot.send_message(f"Unable to Generate OTP.\nResponse: {txnId.text}\n\nRetry with {mobile} ? (y/n Default y): ")
-                retry = bot.recieveFromBot()
+                retry = bot.recieveFromBot(msg=f"Unable to Generate OTP.\nResponse: {txnId.text}\n\nRetry with {mobile} ? (y/n Default y): ",isDefault=True)
                 if retry is None or len(retry) == 0:
-                    bot.send_message(f"Retry with {mobile} ? (y/n Default y): ")
-                    retry = bot.recieveFromBot()
+                    retry = bot.recieveFromBot(msg=f"Retry with {mobile} ? (y/n Default y): ",isDefault=True)
                     if retry is None or len(retry) == 0:
                         if i < 4:
                             retry = 'y'

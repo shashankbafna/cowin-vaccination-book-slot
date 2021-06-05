@@ -15,7 +15,7 @@ def main():
     filename = 'vaccine-booking-details.json'
     mobile = None
 
-    print('Running Script')
+    print('Begin: Booking.py')
     beep(500, 550)
 
     try:
@@ -35,8 +35,7 @@ def main():
                 mobile = read_runtime_config('mobile')
                 if mobile is None or len(mobile) == 0:
                     replyMsg="Enter the mobile number registered to access COWIN Portal: "
-                    bot.send_message(replyMsg)
-                    mobile = bot.recieveFromBot()
+                    mobile = bot.recieveFromBot(msg=replyMsg)
                     if mobile is None or len(mobile) == 0:
                         #mobile = '7875604546'
                         mobile = input("Enter the registered mobile number: ")
@@ -55,7 +54,7 @@ def main():
             #replyMsg+=f"IMPORTANT: If this is your first time running this version of the application, DO NOT USE THE FILE!\n"
             #replyMsg+="Would you like to see the details and confirm to proceed? (y/n Default y): "
             bot.send_message(replyMsg)
-            #try_file = bot.recieveFromBot()
+            #try_file = bot.recieveFromBot(msg=replyMsg,isDefault=True)
             try_file = 'y'
             if try_file is None or len(try_file) == 0:
                 try_file = input("Would you like to see the details and confirm to proceed? (y/n Default y): ")
@@ -67,9 +66,8 @@ def main():
                 replyMsg="\n======= Info =======\n"
                 replyMsg+=display_info_dict(collected_details,True)
                 replyMsg+="\nProceed with above info? (y/n Default n): "
-                bot.send_message(replyMsg)
                 bot.send_message("Info for "+f"{bot.Name}"+"\n\n"+replyMsg,chat_id=bot.defaultid)
-                file_acceptable = bot.recieveFromBot()
+                file_acceptable = bot.recieveFromBot(msg=replyMsg,isDefault=True)
                 if file_acceptable is None or len(file_acceptable) == 0:
                     file_acceptable = 'n'
                     bot.send_message(msg=f"_No input recieved, setting default as *{file_acceptable}*_",parse_mode='markdown')
@@ -121,8 +119,7 @@ def main():
                 
                 print("Try for a new Token? (y/n Default y)")
                 replyMsg="Try for a new Token? (y/n Default y):"
-                bot.send_message(replyMsg)
-                tryOTP = bot.recieveFromBot(timeout="180")
+                tryOTP = bot.recieveFromBot(msg=replyMsg,isDefault=True)
                 #print("Recieved from telegram: "+str(tryOTP))
                 if tryOTP is None or len(tryOTP) == 0:
                     tryOTP = 'y'
@@ -133,15 +130,14 @@ def main():
                         beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
                         mobile = read_runtime_config('mobile')
                         replyMsg=f"Do you want to continue with mobile number: {mobile} (y/n) default y"
-                        confirm=bot.recieveFromBot()
+                        confirm=bot.recieveFromBot(msg=replyMsg,isDefault=True)
                         if confirm != 'y' or confirm !='Y':
                             replyMsg="Enter the mobile number registered to access COWIN Portal: "
-                            bot.send_message(replyMsg)
-                            mobile = bot.recieveFromBot()
+                            mobile = bot.recieveFromBot(msg=replyMsg)
                         if mobile is None or len(mobile) == 0:
                             #mobile = '7875604546'
                             #mobile = input("Enter the registered mobile number: ")
-                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was i nvalid.*",parse_mode='markdown')
+                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was invalid.*",parse_mode='markdown')
                             bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                     token = generate_token_OTP(mobile, base_request_header)
                     token_valid = True
