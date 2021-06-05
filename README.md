@@ -63,6 +63,7 @@ Special thanks to:
             - Enter any desired name for the bot
             - Enter the unique username for the bot
             - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message.
+            - Once it is created, say hi to your bot.
             Please see below image for clarification.
             ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
 
