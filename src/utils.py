@@ -855,7 +855,7 @@ def generate_token_OTP(mobile, request_header):
             if txnId.status_code == 200:
                 print(f"Successfully requested OTP for mobile number {mobile} at {datetime.datetime.today()}..")
                 txnId = txnId.json()['txnId']
-                replyMsg="Enter OTP for {mobile} received in SMS (If this takes more than 2 minutes, press retry):"
+                replyMsg=f"Enter OTP for {mobile} received in SMS (If this takes more than 2 minutes, press retry):"
                 bot.send_message(replyMsg)
                 tryOTP = bot.recieveFromBot()
                 if tryOTP is None or len(tryOTP) == 0:
