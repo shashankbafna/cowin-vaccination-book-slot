@@ -166,6 +166,8 @@ Add-EnvExtension '.PY'
 Add-EnvExtension '.PYW'
 Add-EnvPath $targetDir
 
+$pypath = py -c "import sys; print(sys.executable[:-10])"
+
 $curpath = $MyInvocation.MyCommand.Path.split('/')
 Write-Output "Path of the script : $curpath"
 cd $curpath/../src
