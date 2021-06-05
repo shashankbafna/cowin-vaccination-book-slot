@@ -93,7 +93,7 @@ Special thanks to:
    If installation is done manually, proceed with step 1 else contine from step 2.
    1) Type below command in command prompt (already opened during installation)
       `python ./Booking.py`
-   -  Follow the on screen instructions after starting the script.
+      -  Follow the on screen instructions after starting the script.
 
    2) Goto Mobile telegram app:   
       -  Send /start  to @CovinAutoBot (CovinAuto) & click <Subscribe ID> link.
