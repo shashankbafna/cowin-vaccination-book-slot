@@ -1,8 +1,8 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
 ## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
 
-_June-03-2021/ 2130 hrs_: **8 successfully booked**, 4 still searching.<br>
-_Locations being tried_: **Kerala** (Ernakulam), **Telangana**(Hyderabad), **Maharashtra**(Pune, Mumbai), **Delhi**, **Ladakh** (Kargil), **Karnataka** (Bengaluru)
+_June-05-2021/ 1700 hrs_: **10 successfully booked**, 8 still searching.<br>
+_Locations being tried_: **Kerala** (Ernakulam), **Telangana**(Hyderabad), **Maharashtra**(Pune, Mumbai), **Delhi**, **Ladakh** (Kargil), **Karnataka** (Bengaluru), **Madhyapradesh** (Indore, Bhopal),
 
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
 
@@ -125,7 +125,6 @@ Special thanks to:
          -  Enter comma seperated index numbers of beneficiares
          -  Search using pincode or State/District
             -  Enter pincodes/ Index number of State, followed by Index number of Districts.
-         -  Minimum Availability required
          -  How frequent the request should be sent to COWIN portal to find out the slot availability from APIs.
          -  Search for a week from when? today, tomorrow or date?
          -  Fee preferences? Free or Paid?
