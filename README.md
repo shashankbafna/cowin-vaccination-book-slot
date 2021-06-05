@@ -63,7 +63,7 @@ Special thanks to:
             - Enter any desired name for the bot
             - Enter the unique username for the bot
             - if username is valid, confirmation message from @BotFather with token should come. If not, keep on trying different usernames until you get the token message.
-            - Once it is created, say hi to your bot.
+            - **Once it is created, say hi to your bot**.
             Please see below image for clarification.
             ![image](https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png)
 
@@ -94,10 +94,9 @@ Special thanks to:
    1) Type below command in command prompt (already opened during installation)
       `python ./Booking.py`
    -  Follow the on screen instructions after starting the script.
-      ![image](https://user-images.githubusercontent.com/54980800/120200314-d2c94280-c241-11eb-98d3-84ae76b6a23f.png)
 
    2) Goto Mobile telegram app:   
-      -  Post the <Subscribe ID> message (displayed on your computer screen). Send this to telegram @CovinAutoBot (CovinAuto) user.
+      -  Send /start  to @CovinAutoBot (CovinAuto) & click <Subscribe ID> link.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
       <img src="https://user-images.githubusercontent.com/54980800/120446848-93b50180-c3a7-11eb-823e-2cd2d4d21249.png" align="left" width="300px"/>
       Check this screenshot for further clarification.
@@ -108,7 +107,7 @@ Special thanks to:
       <p> **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__** </p>
       <br>
       <br>
-      <p>Now respond to the questions asked from your bot, in telegram.</p>
+      <p>Now respond to the questions in telegram.</p>
    <br clear="left"/>
 
 ## SELECTION & FEATURES:
