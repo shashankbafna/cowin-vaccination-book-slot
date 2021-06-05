@@ -81,14 +81,12 @@ def display_table(dict_list,ret=False):
         2. Add an Index column, and
         3. Displays the data in tabular format
     """
-    genTable="\n"
     header = ['IDX'] + list(dict_list[0].keys())
     rows = [[idx + 1] + list(x.values()) for idx, x in enumerate(dict_list)]
     #genTable=tabulate.tabulate(rows, header, tablefmt='presto')
-    genTable+=tabulate.tabulate(rows, tablefmt='presto')
+    genTable=tabulate.tabulate(rows, tablefmt='presto')
     print(genTable)
     if ret:
-        genTable+="\n"
         return genTable
         
 
@@ -97,7 +95,7 @@ def display_info_dict(details,ret=False):
     for key, value in details.items():
         if isinstance(value, list):
             if all(isinstance(item, dict) for item in value):
-                genPrint+=f"\t{key}:\n"
+                genPrint+=f"\n\t{key}:"
                 print(f"\t{key}:\n")
                 genPrint+=display_table(value,True)
             else:

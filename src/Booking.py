@@ -123,35 +123,33 @@ def main():
                 replyMsg="Try for a new Token? (y/n Default y):"
                 bot.send_message(replyMsg)
                 tryOTP = bot.recieveFromBot(timeout="180")
-                print("Recieved from telegram: "+str(tryOTP))
+                #print("Recieved from telegram: "+str(tryOTP))
                 if tryOTP is None or len(tryOTP) == 0:
                     tryOTP = 'y'
                     bot.send_message(msg=f"_No input recieved, setting default as *{tryOTP}*_",parse_mode='markdown')
                     #tryOTP = input('Try for a new Token? (y/n Default y): ')
-
-                    if tryOTP.lower() == 'y' or not tryOTP:
+                if tryOTP.lower() == 'y':
+                    if mobile is None or len(mobile) == 0:
+                        beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
+                        mobile = read_runtime_config('mobile')
+                        replyMsg=f"Do you want to continue with mobile number: {mobile} (y/n) default y"
+                        confirm=bot.recieveFromBot()
+                        if confirm != 'y' or confirm !='Y':
+                            replyMsg="Enter the mobile number registered to access COWIN Portal: "
+                            bot.send_message(replyMsg)
+                            mobile = bot.recieveFromBot()
                         if mobile is None or len(mobile) == 0:
-                            beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
-                            mobile = read_runtime_config('mobile')
-                            replyMsg=f"Do you want to continue with mobile number: {mobile} (y/n) default y"
-                            confirm=bot.recieveFromBot()
-                            if confirm != 'y' or confirm !='Y':
-                                replyMsg="Enter the mobile number registered to access COWIN Portal: "
-                                bot.send_message(replyMsg)
-                                mobile = bot.recieveFromBot()
-                            if mobile is None or len(mobile) == 0:
-                                #mobile = '7875604546'
-                                #mobile = input("Enter the registered mobile number: ")
-                                bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was i nvalid.*",parse_mode='markdown')
-                                bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
-
-                        token = generate_token_OTP(mobile, base_request_header)
-                        token_valid = True
-                    else:
-                        bot.send_message("Denied generation of new Token, Stopping Script..")
-                        bot.send_message(msg=f"*Telegram communication ended from your computer.*\nPlease re-run '_python ./Booking.py_' on computer to re-establish.",parse_mode='markdown')
-                        print("Exiting")
-                        os.system("pause")
+                            #mobile = '7875604546'
+                            #mobile = input("Enter the registered mobile number: ")
+                            bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was i nvalid.*",parse_mode='markdown')
+                            bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
+                    token = generate_token_OTP(mobile, base_request_header)
+                    token_valid = True
+                else:
+                    bot.send_message("Denied generation of new Token, Stopping Script..")
+                    bot.send_message(msg=f"*Telegram communication ended from your computer.*\nPlease re-run '_python ./Booking.py_' on computer to re-establish.",parse_mode='markdown')
+                    print("Exiting")
+                    os.system("pause")
 
     except Exception as e:
         print(str(e))
