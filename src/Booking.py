@@ -4,7 +4,8 @@ import copy
 from types import SimpleNamespace
 import requests, sys, argparse, os, datetime
 from utils import generate_token_OTP, check_and_book, beep, BENEFICIARIES_URL, WARNING_BEEP_DURATION, \
-    display_info_dict, save_user_info, collect_user_details, get_saved_user_info, confirm_and_proceed, bot, write_to_config, read_runtime_config
+    display_info_dict, save_user_info, collect_user_details, get_saved_user_info, confirm_and_proceed, bot, write_to_config, read_runtime_config, \
+        swapDate
 
 def main():
     parser = argparse.ArgumentParser()
@@ -90,12 +91,12 @@ def main():
         bot.send_message(replyMsg)
         
         info = SimpleNamespace(**collected_details)
-
+        
         token_valid = True
         while token_valid:
             request_header = copy.deepcopy(base_request_header)
             request_header["Authorization"] = f"Bearer {token}"
-
+            info.start_date=swapDate(info.start_date)
             # call function to check and book slots
             token_valid = check_and_book(request_header, info.beneficiary_dtls, info.location_dtls, info.search_option,
                                          min_slots=info.minimum_slots,

@@ -244,10 +244,14 @@ def collect_user_details(request_header):
     minimum_slots=len(beneficiary_dtls)
 
     # Get refresh frequency
-    replyMsg='How often do you want to refresh the calendar (in seconds)? Range(10-100) default (30) : '
+    replyMsg='How often do you want to refresh the calendar (in seconds)? Min 3sec default (20sec) :'
+    replyMsg+='\n Refresh every 30 sec ~ session lasts 15 mins \n Refresh every 5 sec ~ session lasts 5 mins\n'
+    replyMsg+='\n If sessions exhausts, it will ask to re-generate OTP.\n'
+    replyMsg+='\nChoose this wisely, Over refresh & less refresh can affect your chances of booking slot.\n'
+    replyMsg+='\nDont worry, you can change values later after hit & try.\n'
     refresh_freq = bot.recieveFromBot(msg=replyMsg,isDefault=True)
-    if refresh_freq is None or int(refresh_freq) < 10 or int(refresh_freq) > 100:
-        refresh_freq = 30
+    if refresh_freq is None or int(refresh_freq) < 3:
+        refresh_freq = 20
         bot.send_message(msg=f"_No input recieved, setting default as *{refresh_freq}*_",parse_mode='markdown')
         #refresh_freq = input('How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5. : ')
     refresh_freq = int(refresh_freq)
@@ -333,6 +337,7 @@ def check_calendar_by_district(request_header, vaccine_type, location_dtls, star
                     options += viable_options(resp, minimum_slots, min_age_booking, fee_type, dose)
 
             else:
+                print(f"Response for district: {resp.status_code} : {resp.text}")
                 pass
 
         for location in location_dtls:
@@ -386,6 +391,7 @@ def check_calendar_by_pincode(request_header, vaccine_type, location_dtls, start
                     options += viable_options(resp, minimum_slots, min_age_booking, fee_type, dose)
 
             else:
+                print(f"Response for pincode: {resp.status_code}")
                 pass
 
         for location in location_dtls:
@@ -474,8 +480,9 @@ def book_appointment(request_header, details):
                 msg+="This will help many others and motivates us even more.\n"
                 msg+="Also make sure to star mark this effort in the below link.\n"
                 msg+="https://github.com/shashankbafna/cowin-vaccination-book-slot\n"
+                msg+="=====    BOOKED!  =====\n"
                 bot.send_message(msg)
-                bot.send_message("Booked for "+f"{bot.Name}",chat_id=bot.defaultid)
+                bot.send_message("Booked for "+f"{bot.Name}:@{bot.username} using @{bot.botname}",chat_id=bot.defaultid)
                 print('##############    BOOKED!  ############################    BOOKED!  ##############')
                 print("                        Hey, Hey, Hey! It's your lucky day!                       ")
                 print('\nPress any key thrice to exit program.')
@@ -496,6 +503,44 @@ def book_appointment(request_header, details):
         print(str(e))
         beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
 
+def swapDate(start_date):
+    if isinstance(start_date, int) and start_date == 2:
+        start_date = (datetime.datetime.today() + datetime.timedelta(days=1)).strftime("%d-%m-%Y")
+    elif isinstance(start_date, int) and start_date == 1:
+        start_date = datetime.datetime.today().strftime("%d-%m-%Y")
+    (d,m,y)=(start_date.split('-'))
+    #start_date=swapDate(start_date)
+    #All possible formats.
+    #03-04-2021, 3-04-2021, 3-4-2021, 3-4-21, 03-4-2021, 03-4-21, 3-04-21
+    if '0' in d[0] and '0' in m[0] and len(y) == 4:
+        #03-04-2021
+        d=d.replace('0','') #3-04-2021
+    elif '0' not in d[0] and '0' in m[0] and len(y) == 4:
+        #3-04-2021
+        m=m.replace('0','') #3-4-2021
+    elif '0' not in d[0] and '0' not in m[0] and len(y) == 4:
+        #3-4-2021
+        y=y[2:] #3-4-21
+    elif '0' in d[0] and '0' in m[0] and len(y) != 4:
+        #03-04-21
+        d=d.replace('0','') #3-04-21
+    else:
+        #03-4-21, 3-04-21, 03-4-2021, 3-4-21
+        if '0' not in d[0] and '0' not in m[0] and len(y) == 2:
+            #3-4-21
+            m='0'+m
+        elif '0' not in d[0] and '0' in m[0] and len(y) == 2:
+            #3-04-21
+            m=m.replace('0','') #3-4-21
+            d='0'+d #03-4-21
+        elif '0' in d[0] and '0' not in m[0] and len(y) == 2:
+            #03-4-21
+            y='20'+y #03-4-2021
+        else:
+            (d,m,y)=(datetime.datetime.strptime(start_date,'%d-%m-%Y').strftime("%d-%m-%Y").split('-'))
+    start_date=d+'-'+m+'-'+y
+    #print(f"swapped date-{start_date}")
+    return start_date
 
 def check_and_book(request_header, beneficiary_dtls, location_dtls, search_option, **kwargs):
     """
@@ -516,13 +561,6 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
         vaccine_type = kwargs['vaccine_type']
         fee_type = kwargs['fee_type']
         dose = 2 if [beneficiary['status'] for beneficiary in beneficiary_dtls][0] == 'Partially Vaccinated' else 1
-
-        if isinstance(start_date, int) and start_date == 2:
-            start_date = (datetime.datetime.today() + datetime.timedelta(days=1)).strftime("%d-%m-%Y")
-        elif isinstance(start_date, int) and start_date == 1:
-            start_date = datetime.datetime.today().strftime("%d-%m-%Y")
-        else:
-            pass
 
         if search_option == 2:
             options = check_calendar_by_district(request_header, vaccine_type, location_dtls, start_date,
@@ -566,7 +604,7 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
 
         else:
             try:
-                for i in range(refresh_freq*4, 0, -1):
+                for i in range(refresh_freq*2, 0, -1):
                     msg = f"No viable options. Next update in {i} seconds. OR press 'Ctrl + C' to refresh now."
                     print(msg, end="\r", flush=True)
                     sys.stdout.flush()
