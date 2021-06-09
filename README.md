@@ -26,16 +26,9 @@ While maintaining the valid user session, it tries to find a vaccination slot fo
 It checks for preferences such as vaccine type, state, pincode, district, paid/free & whether to auto-book the slot or not.
 Once slot is found, it tries booking it by randomly selecting the slot & resolving the captcha.
 </blockquote>
-<img src="https://user-images.githubusercontent.com/54980800/120206981-779b4e00-c249-11eb-8345-854486546cba.png" align="right" width="800px"/>
 <br clear="left"/>
 <br clear="right"/>
 
-Special thanks to:
-1) **pallupz**: For sourcing the raw python code. : https://github.com/pallupz/covid-vaccine-booking/
-2) **COWIN**: For providing open APIs. : https://www.cowin.gov.in/
-3) **Telegram**: For providing open APIs. : https://web.telegram.org/
-4) **Python**: Life without you is not possible. : https://www.python.org/
-5) Lastly my wife: **Srishti** (**@ournotesfromtheroads**): For being my guinea pig :(https://www.instagram.com/ournotesfromtheroads/)
 
 ## Pre-requisites:
 1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
@@ -146,6 +139,13 @@ Special thanks to:
    -  This requires constant response from the user when notified either via computer beep or telegram notification.
 2) Inputs & outputs on telegram can be beautified, right now, I have just pushed them from console.
 3) Exception handling for inputs & url requests.
+
+Special thanks to:
+1) **pallupz**: For sourcing the raw python code. : https://github.com/pallupz/covid-vaccine-booking/
+2) **COWIN**: For providing open APIs. : https://www.cowin.gov.in/
+3) **Telegram**: For providing open APIs. : https://web.telegram.org/
+4) **Python**: Life without you is not possible. : https://www.python.org/
+5) Lastly my wife: **Srishti** (**@ournotesfromtheroads**): For being my guinea pig :(https://www.instagram.com/ournotesfromtheroads/)
 
 **DISCLAIMER: 
 USE IT AT YOUR OWN RISK.**
