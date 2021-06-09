@@ -535,10 +535,10 @@ def swapDate(start_date):
         d=d.replace('0','') #3-04-21
     else:
         #03-4-21, 3-04-21, 03-4-2021, 3-4-21
-        if '0' not in d[0] and '0' not in m[0] and len(y) == 2:
+        if '0' not in d[0] and '0' not in m[0] and len(m) == 1  and len(y) == 2:
             #3-4-21
             m='0'+m
-        elif '0' not in d[0] and '0' in m[0] and len(y) == 2:
+        elif '0' not in d[0] and len(d) == 1 and '0' in m[0] and len(y) == 2:
             #3-04-21
             m=m.replace('0','') #3-4-21
             d='0'+d #03-4-21
@@ -546,7 +546,10 @@ def swapDate(start_date):
             #03-4-21
             y='20'+y #03-4-2021
         else:
-            (d,m,y)=(datetime.datetime.strptime(start_date,'%d-%m-%Y').strftime("%d-%m-%Y").split('-'))
+            if len(d) == 2 and len(m) == 2 and len(y) == 2:
+                (d,m,y)=(datetime.datetime.strptime(start_date,'%d-%m-%y').strftime("%d-%m-%Y").split('-'))
+            else:
+                (d,m,y)=(datetime.datetime.strptime(start_date,'%d-%m-%Y').strftime("%d-%m-%Y").split('-'))
     start_date=d+'-'+m+'-'+y
     #print(f"swapped date-{start_date}")
     return start_date
