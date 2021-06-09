@@ -55,9 +55,8 @@ Special thanks to:
 
  ## Create BOT (in Telegram)
  This is a one time activity. If you already have a bot & its token, you can proceed to Installation step.
- - On **Mobile/Phone**:
+ - On **Mobile/Phone** open telegram app:
    <img src="https://user-images.githubusercontent.com/54980800/120314845-48441a00-c2f9-11eb-998f-f5115d93b8fd.png" align="left" width="300px"/> 
-  -  Create Bot:
    - Search for **@BotFather** userbot.
       - type `/newbot`
       - Enter any desired name for the bot
