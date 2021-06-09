@@ -102,10 +102,9 @@ Special thanks to:
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
      Check this screenshot for further clarification.
      <br>
-   -  **MANDATORY (after startup)**
-      <p> **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.** </p>
-
-      <p> **__ALSO MAKE SURE TO ENTER OTP as asking in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__** </p>
+**MANDATORY (after startup)**
+-  **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.**
+-  **__ALSO MAKE SURE TO ENTER OTP as asked in the telegram bot, else session will not continue, you may need to follow steps for "Startup" again.__** 
       <br>
       <br>
       <p>Now respond to the questions in telegram.</p>
