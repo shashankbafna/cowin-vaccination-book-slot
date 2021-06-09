@@ -1,1 +1,1 @@
-web: python3 cowinVaccinationSlotAutoBooking.py
+web: python3 Bookings.py
