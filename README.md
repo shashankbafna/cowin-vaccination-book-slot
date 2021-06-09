@@ -34,7 +34,7 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 1) **Computer/Laptop/CPU** - capable of running <a href="https://www.python.org/ftp/python/3.9.5/" >python</a> & having access to internet.
 2) **Internet connection** - Only with **_Indian_** ISP providers.
 3) **Smart phone** - with telegram app
-4) **Registered on COWIN-portal**-  Add all the non-vaccinated members in <a href"https://selfregistration.cowin.gov.in/">here</a>.
+4) **Registered on COWIN-portal**-  Add all the non-vaccinated members in <a href"https://selfregistration.cowin.gov.in/" >here</a>.
 
  ## Create BOT (in Telegram)
  This is a one time activity. If you already have a bot & its token, you can proceed to Installation step.
