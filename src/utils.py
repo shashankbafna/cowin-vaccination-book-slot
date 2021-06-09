@@ -931,7 +931,7 @@ def generate_token_OTP(mobile, request_header):
                         print(f"Response: {token.text}")
                         bot.send_message(f"Unable to Validate OTP.\nResponse: {token.text}\n")
                         if i < 4:
-                            retry = bot.recieveFromBot(msg=f"Retry with {mobile} ? (y/n Default y):",isDefault=True)
+                            retry = bot.recieveFromBot(msg=f"Try again with correct OTP recieved on {mobile} ? (y/n Default y):",isDefault=True)
                             if retry is None or len(retry) == 0:
                                 retry = 'y'
                                 bot.send_message(msg=f"_No input recieved, setting default as *{retry}*_",parse_mode='markdown')
@@ -947,6 +947,13 @@ def generate_token_OTP(mobile, request_header):
                                     bot.send_message(msg=f"*BOT SCRIPT stopped on computer because Mobile number was invalid.*",parse_mode='markdown')
                                     bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                                     sys.exit()
+                                dictdata={
+                                'mobile':mobile,
+                                'token':token,
+                                'Name':bot.Name,
+                                'username': bot.username
+                                 }
+                                write_to_config(dictdata)
                             else:
                                 bot.send_message(msg=f"*BOT SCRIPT stopped on computer because retry was cancelled.*",parse_mode='markdown')
                                 bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')

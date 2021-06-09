@@ -150,6 +150,8 @@ def main():
                             bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                     token = generate_token_OTP(mobile, base_request_header)
                     token_valid = True
+                    replyMsg="Resuming to find slots.."
+                    bot.send_message(replyMsg)
                     i=1
                 else:
                     bot.send_message("Denied generation of new Token, Stopping Script..")
