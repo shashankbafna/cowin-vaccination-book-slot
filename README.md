@@ -31,20 +31,10 @@ Once slot is found, it tries booking it by randomly selecting the slot & resolvi
 
 
 ## Pre-requisites:
-1) **Computer/Laptop/CPU** - capable of running python & having access to internet.
-   -  Packages/Softwares needed on computer:
-      - Windows/Linux OS.
-      - Python 3 or greater installed.
-         Windows link to install: https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe
+1) **Computer/Laptop/CPU** - capable of running <a href="https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe" >python</a> & having access to internet.
 2) **Internet connection** - Only with **_Indian_** ISP providers.
-3) **Smart phone**<br>
-   - Having number provided by any Indian service provider with access to network & data.
-   - Network  - the more the merrier.<br>
-   - Telegram app<br>
-4) **Registered on cowin-portal**
-   -  If not already registered, please register it using the following link:
-      https://selfregistration.cowin.gov.in/
-   -  Add all the non-vaccinated members to get the vaccinations slots for them.
+3) **Smart phone** - with telegram app
+4) **Registered on cowin-portal**-  Add all the non-vaccinated members to get the vaccinations slots for them.
 
  ## Create BOT (in Telegram)
  This is a one time activity. If you already have a bot & its token, you can proceed to Installation step.
