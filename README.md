@@ -96,12 +96,12 @@ Special thanks to:
    ![image](https://user-images.githubusercontent.com/54980800/121158296-e12de480-c867-11eb-90b6-201618d6369b.png)
    
    2) Goto Mobile telegram app:   
+       <img src="https://user-images.githubusercontent.com/54980800/121158721-34a03280-c868-11eb-8d59-39d8e451009b.png" align="left" width="300px"/>
       -  Make sure, you have said hi to your newly created bot.
       -  Search for user @CowinAutoBot & click or type /start. -> click SubscribeID link.
       -  After that it should ask for bot token message, which you have recieved from @BotFather bot
-      <img src="https://user-images.githubusercontent.com/54980800/121158721-34a03280-c868-11eb-8d59-39d8e451009b.png" align="left" width="300px"/>
-      Check this screenshot for further clarification.
-      <br>
+     Check this screenshot for further clarification.
+     <br>
    -  **MANDATORY (after startup)**
       <p> **MAKE SURE THAT SCRIPT Keeps RUNNING ON LAPTOP, else you will not see updates on telegram. You need to follow steps for "Startup" if script exits.** </p>
 
