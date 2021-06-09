@@ -93,6 +93,7 @@ def main():
         info = SimpleNamespace(**collected_details)
         
         token_valid = True
+        i=1
         while token_valid:
             request_header = copy.deepcopy(base_request_header)
             request_header["Authorization"] = f"Bearer {token}"
@@ -104,14 +105,21 @@ def main():
                                          auto_book=info.auto_book,
                                          start_date=info.start_date,
                                          vaccine_type=info.vaccine_type,
-                                         fee_type=info.fee_type)
-
+                                         fee_type=info.fee_type,
+                                         attemptCount=i)
+            
+            tempValidity=token_valid
+            #check number of attempts made
+            if token_valid:
+                #print(f"{i}#Attempt: ")
+                i+=1
+                
             # check if token is still valid
             beneficiaries_list = requests.get(BENEFICIARIES_URL, headers=request_header)
             if beneficiaries_list.status_code == 200:
                 token_valid = True
 
-            else:
+            if (i > 20 and not tempValidity and token_valid) or not token_valid:
                 # if token invalid, regenerate OTP and new token
                 beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
                 print('Token is INVALID.')
@@ -142,6 +150,7 @@ def main():
                             bot.send_message(msg=f"*Telegram communication lost.*\nPlease re-run '_python ./Booking.py_' on computer.",parse_mode='markdown')
                     token = generate_token_OTP(mobile, base_request_header)
                     token_valid = True
+                    i=1
                 else:
                     bot.send_message("Denied generation of new Token, Stopping Script..")
                     bot.send_message(msg=f"*Telegram communication ended from your computer.*\nPlease re-run '_python ./Booking.py_' on computer to re-establish.",parse_mode='markdown')

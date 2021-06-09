@@ -315,7 +315,7 @@ def check_calendar_by_district(request_header, vaccine_type, location_dtls, star
         4. Returns list of vaccination centers & slots if available
     """
     try:
-        print('===================================================================================')
+        print('============================================================================================')
         today = datetime.datetime.today()
         base_url = CALENDAR_URL_DISTRICT
 
@@ -326,8 +326,12 @@ def check_calendar_by_district(request_header, vaccine_type, location_dtls, star
         for location in location_dtls:
             resp = requests.get(base_url.format(location['district_id'], start_date), headers=request_header)
 
-            if resp.status_code == 401:
+            if resp.status_code == 401 :
                 print('TOKEN INVALID')
+                return False
+
+            elif resp.status_code == 403 :
+                print('TOKEN INVALID:'+resp.text)
                 return False
 
             elif resp.status_code == 200:
@@ -335,9 +339,14 @@ def check_calendar_by_district(request_header, vaccine_type, location_dtls, star
                 if 'centers' in resp:
                     print(f"Centers available in {location['district_name']} from {start_date} as of {today.strftime('%Y-%m-%d %H:%M:%S')}: {len(resp['centers'])}")
                     options += viable_options(resp, minimum_slots, min_age_booking, fee_type, dose)
+            
+            elif resp.status_code == 429:
+                print('Cooling down for 120 sec for retry ..too many requests sent to COWIN API.')
+                time.sleep(120)
+                pass
 
             else:
-                print(f"Response for district: {resp.status_code} : {resp.text}")
+                print(f"Response from district search API: {resp.status_code} : {resp.text}")
                 pass
 
         for location in location_dtls:
@@ -561,6 +570,7 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
         vaccine_type = kwargs['vaccine_type']
         fee_type = kwargs['fee_type']
         dose = 2 if [beneficiary['status'] for beneficiary in beneficiary_dtls][0] == 'Partially Vaccinated' else 1
+        attemptCount = kwargs['attemptCount']
 
         if search_option == 2:
             options = check_calendar_by_district(request_header, vaccine_type, location_dtls, start_date,
@@ -605,7 +615,7 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
         else:
             try:
                 for i in range(refresh_freq*2, 0, -1):
-                    msg = f"No viable options. Next update in {i} seconds. OR press 'Ctrl + C' to refresh now."
+                    msg = f"Attempt#{attemptCount}: No viable options. Next update in {i} seconds. OR press 'Ctrl + C' to refresh now."
                     print(msg, end="\r", flush=True)
                     sys.stdout.flush()
                     time.sleep(1)
