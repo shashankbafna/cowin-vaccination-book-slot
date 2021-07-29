@@ -1,7 +1,7 @@
 # COWIN VACCINATION SLOT AUTO BOOKING
 ## _(Bot with captcha solving & alerting capabilities. Never miss the vaccine slot.)_
 
-_June-10-2021/ 0030 hrs_: **23 successfully booked**, 34 still searching. **PAN INDIA** <br>
+_July-29-2021/ 1220 hrs_: **230 successfully booked -- PAN INDIA** <br>
 
 ![Cowin-AutoBot](https://user-images.githubusercontent.com/54980800/120240129-7552e700-c27d-11eb-8edc-de83dc6a991b.jpg)
 
